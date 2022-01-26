@@ -1,0 +1,21 @@
+.header-drop-down {
+  position: absolute;
+  background-color: white;
+  color: black;
+  padding: 1rem 0;
+  top: 103%;
+  right: 1%;
+  width: 200px;
+  &-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    cursor: pointer;
+    &:hover {
+      background-color: rgb(233, 233, 233);
+    }
+    span {
+      margin-right: 5px;
+    }
+  }
+}

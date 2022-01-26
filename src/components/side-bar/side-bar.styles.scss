@@ -1,0 +1,32 @@
+.side-bar-container {
+  padding: 5rem 1rem;
+  background-color: #4b6752;
+  width: 20%;
+  position: fixed;
+  height: 100%;
+  overflow-y: auto;
+  @media (max-width: 768px) {
+    display: none;
+  }
+
+  .side-bar-item {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    color: white;
+    margin: 0.5rem 0;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: all 0.1s ease-in-out;
+
+    span {
+      margin-top: 4px;
+      margin-right: 6px;
+      color: white;
+    }
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.144);
+    }
+  }
+}

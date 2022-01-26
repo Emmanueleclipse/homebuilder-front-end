@@ -1,0 +1,34 @@
+.setting-input {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+}
+.create-property {
+  form {
+    width: max-content;
+  }
+
+  .form-ctrl-full .form-input,
+  .form-ctrl-full input {
+    width: 100%;
+  }
+}
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.144);
+  display: flex;
+  justify-content: center;
+}
+
+.popup-crew .close-icon-container {
+  text-align: right;
+  cursor: pointer;
+  transform: translateY(-20px);
+}

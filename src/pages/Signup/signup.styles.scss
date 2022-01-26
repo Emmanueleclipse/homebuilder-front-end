@@ -1,0 +1,55 @@
+.auth-page {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  @media (max-width: 468px) {
+    background-color: white;
+  }
+  &-container {
+    margin-top: 3rem;
+    background-color: white;
+    padding: 4rem;
+    width: 90%;
+    max-width: 550px;
+    border-radius: 5px;
+    border: 1px solid rgb(214, 214, 214);
+    height: max-content;
+    h2 {
+      color: #398d63 !important;
+    }
+    @media (max-width: 668px) {
+      padding: 2rem;
+    }
+    @media (max-width: 468px) {
+      padding: 1rem;
+      border: none;
+    }
+  }
+  .auth-form {
+    & > * {
+      margin: 1rem 0;
+    }
+  }
+  .form-buttons {
+    text-align: center;
+    button {
+      margin-top: 2rem;
+    }
+    p {
+      margin-top: 1rem;
+      a {
+        color: #398d63;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.alert {
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  &-error {
+    background-color: rgb(255, 204, 204);
+    color: rgb(223, 60, 60);
+  }
+}

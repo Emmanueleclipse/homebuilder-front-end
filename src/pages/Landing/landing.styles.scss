@@ -1,0 +1,42 @@
+.landing-page-container {
+  background-color: #41544b;
+  height: 100vh;
+  padding: 3rem;
+  padding-top: 7rem;
+}
+
+.landing {
+  &-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    &-heading {
+      font-family: "Poppins", sans-serif;
+      color: white;
+      @media (max-width: 468px) {
+        text-align: center;
+      }
+    }
+  }
+  &-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+    & > * {
+      margin: 0 1rem;
+    }
+    @media (max-width: 468px) {
+      flex-direction: column;
+      & > * {
+        margin: 1rem 0;
+      }
+    }
+  }
+  &-icon {
+    color: #398d63;
+    span {
+      font-size: 150px;
+    }
+  }
+}

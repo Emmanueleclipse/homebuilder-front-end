@@ -1,0 +1,17 @@
+.setting-input {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+}
+.create-property {
+  form {
+    width: max-content;
+  }
+
+  .form-ctrl-full .form-input,
+  .form-ctrl-full input {
+    width: 100%;
+  }
+}

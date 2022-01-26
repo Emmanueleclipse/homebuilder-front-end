@@ -1,0 +1,92 @@
+.payment-container {
+  display: flex;
+  align-content: center;
+  justify-content: flex-start;
+}
+
+.payment-info-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  cursor: pointer;
+  & > * {
+    margin: 0.4rem;
+  }
+}
+
+.payment-info-input button {
+  text-align: right;
+  width: max-content;
+}
+.payment-info-submit {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.payment-info-input {
+  display: flex;
+  flex-direction: column;
+  margin: 0.4rem;
+  input {
+    border: 1px solid rgb(216, 216, 216);
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0;
+    transition: all 0.2s ease-in-out;
+    width: 100%;
+    &:focus {
+      border: 1px solid green;
+    }
+
+    outline: none;
+  }
+  label {
+    color: rgb(139, 139, 139);
+    font-size: 0.9rem;
+  }
+}
+
+.payment-info-input-group {
+  display: flex;
+  margin-top: 4%
+}
+
+.payment-info-head {
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+.payment-method-container {
+  display: flex;
+
+  flex-wrap: wrap;
+  & > * {
+    margin-right: 0.6rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      background-color: rgb(241, 241, 241);
+    }
+  }
+}
+
+.payment-method-card {
+  height: 12rem;
+  width: 16rem;
+  border: 1px solid green;
+  margin: 1rem 1rem 1rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  span {
+    font-size: 90px;
+    color: rgb(9, 180, 9);
+  }
+}
+.payment-method-card div {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  color: gray;
+}

@@ -1,0 +1,43 @@
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.144);
+  display: flex;
+  justify-content: center;
+}
+
+.popup-crew .close-icon-container {
+  text-align: right;
+  cursor: pointer;
+  transform: translateY(-20px);
+}
+
+
+  .select-input {
+    padding: 0.7rem 1rem;
+    min-width: 170px;
+    border: none;
+    font-size: 13px;
+    font-family: inherit;
+    background-color: rgb(236, 236, 236);
+    border-radius: 10px;
+    border: 1px solid rgb(231, 231, 231);
+    outline: none;
+    transition: all 0.2s ease-in-out;
+    &:focus {
+      outline: none;
+      border: 1px solid #398d63bd;
+    }
+  }
+
+  label {
+    margin-right: 10px;
+  }
+  .label {
+    width: 140px;
+  }
+ 

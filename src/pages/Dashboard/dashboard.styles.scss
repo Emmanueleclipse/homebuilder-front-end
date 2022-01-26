@@ -1,0 +1,31 @@
+.dashboard {
+  margin-left: 250px;
+  @media (max-width: 980px) {
+    margin-left: 125px;
+  }
+  @media (max-width: 768px) {
+    margin-left: 0;
+    margin-bottom: 4rem;
+  }
+  padding-top: 4rem;
+
+  &-page-heading {
+    padding: 1rem;
+    background-color: rgb(243, 243, 243);
+    color: #21a869;
+    padding-left: 4rem;
+    display: flex;
+    align-items: center;
+    @media (max-width: 768px) {
+      padding-left: 2rem;
+    }
+  }
+  &-page-heading h2 {
+    font-weight: 500;
+    font-size: 24px;
+    margin-bottom: 0 !important;
+    @media (max-width: 768px) {
+      font-size: 20px;
+    }
+  }
+}

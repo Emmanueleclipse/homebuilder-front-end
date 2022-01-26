@@ -1,0 +1,45 @@
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.144);
+  display: flex;
+  justify-content: center;
+}
+
+.popup-crew .close-icon-container {
+  text-align: right;
+  cursor: pointer;
+  transform: translateY(-20px);
+}
+.yes-button {
+  text-align: center;
+  button {
+    margin-top: 2rem;
+  }
+  p {
+    margin-top: 1rem;
+    a {
+      color: #398d63;
+      font-weight: 500;
+    }
+  }
+
+}
+.no-button {
+  text-align: center;
+  button {
+    margin-top: 2rem;
+  }
+  p {
+    margin-top: 1rem;
+    a {
+      color: #aa2302;
+      font-weight: 500;
+    }
+  }
+
+}

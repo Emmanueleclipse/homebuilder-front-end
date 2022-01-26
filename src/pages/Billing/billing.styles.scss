@@ -1,0 +1,101 @@
+.billing-page {
+  display: flex;
+  justify-content: center;
+  background-color: #fcfcfc;
+  &-container {
+    padding: 4rem;
+    width: 100%;
+    border-radius: 5px;
+    height: 100%;
+    h2 {
+      color: #398d63 !important;
+    }
+    @media (max-width: 668px) {
+      padding: 2rem;
+    }
+    @media (max-width: 468px) {
+      padding: 1rem;
+      border: none;
+    }
+  }
+  .auth-form {
+    & > * {
+      margin: 1rem 0;
+    }
+  }
+  .form-buttons {
+    text-align: center;
+    button {
+      margin-top: 2rem;
+    }
+    p {
+      margin-top: 1rem;
+      a {
+        color: #398d63;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.alert {
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  &-error {
+    background-color: rgb(255, 204, 204);
+    color: rgb(223, 60, 60);
+  }
+}
+
+.plans-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  .plan-card {
+    border-radius: 10px;
+    width: 300px;
+    background-color: white;
+    margin: 1rem;
+    padding: 2rem;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.055);
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.055);
+    }
+    .plan-title {
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+    .plan-info-title {
+      font-size: 1rem;
+      color: rgb(165, 165, 165);
+    }
+    .plan-info-item {
+      display: flex;
+      align-items: flex-start;
+    }
+    .plan-info-item span {
+      font-size: 15px;
+      margin-right: 5px;
+      margin-top: 3px;
+    }
+    .plan-info-details {
+      margin: 1rem 0;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    .plan-price-container {
+      border-top: 1px solid rgb(190, 190, 190);
+      padding-top: 20px;
+      margin-bottom: 3rem;
+      .plan-price {
+        font-size: 1.6rem;
+        font-weight: 500;
+      }
+    }
+    .plan-btn-container {
+      text-align: center;
+    }
+  }
+}

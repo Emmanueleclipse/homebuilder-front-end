@@ -1,0 +1,25 @@
+.simple-input {
+  input {
+    padding: 0.5rem 0rem;
+    border: none;
+    border-bottom: 1px solid rgb(194, 194, 194);
+    width: 100%;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+    &:focus {
+      border-color: #398d63bd;
+    }
+  }
+  .input-with-icon {
+    position: relative;
+    span {
+      color: rgb(36, 36, 36);
+      cursor: pointer;
+      font-size: 20px;
+      position: absolute;
+      top: 7%;
+      right: 3%;
+    }
+  }
+}

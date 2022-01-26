@@ -1,0 +1,31 @@
+.mobile-expand {
+  &-heading {
+    font-size: 22px;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  &-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    cursor: pointer;
+    &:hover {
+      background-color: rgb(235, 235, 235);
+    }
+    &-left {
+      display: flex;
+      align-items: center;
+      span {
+        margin-top: 2px;
+        margin-right: 6px;
+      }
+    }
+    &-right {
+      span {
+        color: #398d63;
+      }
+    }
+  }
+}
