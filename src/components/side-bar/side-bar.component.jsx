@@ -68,7 +68,7 @@ const renderMenu = (role) => {
             <div className="side-bar-item-icon">
               <span class="material-icons">calendar_today</span>
             </div>
-            <div className="side-bar-item-label">Create Activity</div>
+            <div className="side-bar-item-label">Create Milestone</div>
           </div>
         </Link>
         <Link to="/property/add">
@@ -76,7 +76,7 @@ const renderMenu = (role) => {
             <div className="side-bar-item-icon">
               <span class="material-icons">people</span>
             </div>
-            <div className="side-bar-item-label">Manage Property</div>
+            <div className="side-bar-item-label">Create Property</div>
           </div>
         </Link>
         <Link to="/property">
@@ -84,7 +84,7 @@ const renderMenu = (role) => {
             <div className="side-bar-item-icon">
               <span class="material-icons">save_alt</span>
             </div>
-            <div className="side-bar-item-label">View Properties</div>
+            <div className="side-bar-item-label">Manage Property</div>
           </div>
         </Link>
 
@@ -93,7 +93,7 @@ const renderMenu = (role) => {
             <div className="side-bar-item-icon">
               <span class="material-icons">help_outline</span>
             </div>
-            <div className="side-bar-item-label">Help Center</div>
+            <div className="side-bar-item-label">Help and Resources</div>
           </div>
         </Link>
       </>
