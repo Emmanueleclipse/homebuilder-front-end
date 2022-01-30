@@ -1,0 +1,14 @@
+.mobile-back-btn {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: white;
+  z-index: 3;
+  width: 100%;
+}
+
+.mobile-back-btn .back-btn {
+  cursor: pointer;
+}
+/*# sourceMappingURL=mobile-back-btn.styles.css.map */

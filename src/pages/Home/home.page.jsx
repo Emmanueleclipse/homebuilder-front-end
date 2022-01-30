@@ -12,13 +12,13 @@ const Home = (props) => {
 
 
   useEffect(() => {
-   const property_id = props.match.params.property_id;
-  //  ?props.history.push('/')
+    const property_id = props.match.params.property_id;
+    //  ?props.history.push('/')
     // console.log(props.token)
-    if (props.token){ 
-      props.fetchAllActivities(props.token,property_id);
+    if (props.token) {
+      props.fetchAllActivities(props.token, property_id);
     }
-  },[props.token]);
+  }, [props.token]);
 
   return (
     <div className="dashboard-page">
@@ -26,6 +26,9 @@ const Home = (props) => {
         <h2>Home</h2>
       </div>
       <div className="home-container">
+        <h2 className="ip">helloasdfg</h2>
+      </div>
+      {/* <div className="home-container">
         <div className="home-search">
           <label htmlFor="">Enter date : </label>
           <div className="home-search-control">
@@ -45,63 +48,63 @@ const Home = (props) => {
           </div>
           <div className="home-cards-list">
             {
-              props.activityLoading ? 
-              <p>Loading activities .....</p>
-              :
- props.activities.length > 0 ?
-            
-  props.activities.map((activity) => (
-    <div className="home-card" key={activity.pk}>
-      <div className="home-card-header">
-        <div className="home-card-left">
-          <div className="home-card-img">
-            <img
-              src={`http://homebuilder.herokuapp.com${activity.image}`}
-              alt=""
-            />
-          </div>
-          <div className="home-card-info">
-            <div className="home-card-title">
-              {activity.milestone_name}
-            </div>
-            <div className="home-card-subtitle">
-              {activity.description}
-            </div>
-          </div>
-        </div>
-        <div className="home-card-right">
-          <span class="material-icons">dns</span>
-          <span class="material-icons">attach_money</span>
-        </div>
-      </div>
-      <div className="home-card-detail"></div>
-    </div>
-  ))
-  :
-  <h6 style={{marginTop:'1rem'}}>No Activity Found</h6>
+              props.activityLoading ?
+                <p>Loading activities .....</p>
+                :
+                props.activities.length > 0 ?
+
+                  props.activities.map((activity) => (
+                    <div className="home-card" key={activity.pk}>
+                      <div className="home-card-header">
+                        <div className="home-card-left">
+                          <div className="home-card-img">
+                            <img
+                              src={`http://homebuilder.herokuapp.com${activity.image}`}
+                              alt=""
+                            />
+                          </div>
+                          <div className="home-card-info">
+                            <div className="home-card-title">
+                              {activity.milestone_name}
+                            </div>
+                            <div className="home-card-subtitle">
+                              {activity.description}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="home-card-right">
+                          <span class="material-icons">dns</span>
+                          <span class="material-icons">attach_money</span>
+                        </div>
+                      </div>
+                      <div className="home-card-detail"></div>
+                    </div>
+                  ))
+                  :
+                  <h6 style={{ marginTop: '1rem' }}>No Activity Found</h6>
 
             }
-            
+
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
 
 
-const mapStateToProps = state =>{
+const mapStateToProps = state => {
   return {
-    'token':state.authReducer.token,
-    'activities':state.activityReducer.activities,
-    'activityError':state.activityReducer.error,
-    'activityLoading':state.activityReducer.loading
+    'token': state.authReducer.token,
+    'activities': state.activityReducer.activities,
+    'activityError': state.activityReducer.error,
+    'activityLoading': state.activityReducer.loading
   }
 }
 
-const mapDispatchToProps = dispatch =>{
+const mapDispatchToProps = dispatch => {
   return {
- 'fetchAllActivities':(token,property_id)=>dispatch(fetchActivities({token,property_id}))
+    'fetchAllActivities': (token, property_id) => dispatch(fetchActivities({ token, property_id }))
   }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

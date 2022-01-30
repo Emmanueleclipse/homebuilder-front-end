@@ -1,0 +1,28 @@
+.simple-input input {
+  padding: 0.5rem 0rem;
+  border: none;
+  border-bottom: 1px solid #c2c2c2;
+  width: 100%;
+  font-size: 14px;
+  outline: none;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.simple-input input:focus {
+  border-color: #398d63bd;
+}
+
+.simple-input .input-with-icon {
+  position: relative;
+}
+
+.simple-input .input-with-icon span {
+  color: #242424;
+  cursor: pointer;
+  font-size: 20px;
+  position: absolute;
+  top: 7%;
+  right: 3%;
+}
+/*# sourceMappingURL=simple-input.styles.css.map */

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,cAAc,CAAC;EACb,QAAQ,EAAE,KAAK;EACf,GAAG,EAAE,CAAC;EACN,IAAI,EAAE,CAAC;EACP,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,KAAK;EACb,OAAO,EAAE,EAAE;EACX,gBAAgB,EAAE,oBAAoB;EACtC,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,MAAM;CACxB;;AAED,AAAA,WAAW,CAAC,qBAAqB,CAAC;EAChC,UAAU,EAAE,KAAK;EACjB,MAAM,EAAE,OAAO;EACf,SAAS,EAAE,iBAAiB;CAC7B",
+    "sources": [
+        "update-crew.scss"
+    ],
+    "names": [],
+    "file": "update-crew.css"
+}

@@ -1,0 +1,178 @@
+.activity-container {
+  padding: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media (max-width: 468px) {
+  .activity-container {
+    padding: 0.5rem;
+  }
+}
+
+.activity-heading {
+  margin-bottom: 2rem;
+}
+
+.activity-heading h2 {
+  font-weight: 600;
+}
+
+.activity-card {
+  background-color: white;
+  border: 1px solid #e2e2e2;
+  width: 75%;
+  padding: 2rem;
+}
+
+@media (max-width: 1288px) {
+  .activity-card {
+    width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .activity-card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 468px) {
+  .activity-card {
+    padding: 0.5rem;
+  }
+}
+
+.activity-card .form-ctrl {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 1.3rem 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media (max-width: 768px) {
+  .activity-card .form-ctrl {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+}
+
+.activity-card .select-input {
+  padding: 0.7rem 1rem;
+  min-width: 170px;
+  border: none;
+  font-size: 13px;
+  font-family: inherit;
+  background-color: #ececec;
+  border-radius: 10px;
+  border: 1px solid #e7e7e7;
+  outline: none;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.activity-card .select-input:focus {
+  outline: none;
+  border: 1px solid #398d63bd;
+}
+
+.activity-card .form-ctrl-textarea {
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.activity-card label {
+  margin-right: 10px;
+}
+
+.activity-card .label {
+  width: 140px;
+}
+
+.activity-card textarea {
+  resize: none;
+  padding: 0.7rem 1rem;
+  outline: none;
+  border: none;
+  font-size: 13px;
+  font-family: inherit;
+  background-color: #ececec;
+  border-radius: 10px;
+  border: 1px solid #e7e7e7;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.activity-card textarea:focus {
+  border-color: #398d63bd;
+}
+
+@media (max-width: 468px) {
+  .activity-card textarea {
+    width: 93%;
+  }
+}
+
+.activity-card .form-submit {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.activity-card .form-ctrl > * {
+  margin: 0 0.5rem;
+}
+
+.activity-card .check-box-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.activity-card .check-box-control,
+.activity-card .check-box-control input {
+  margin-right: 0.5rem;
+}
+
+.activity-card .file-upload-btn label {
+  background-color: #c9c9c9;
+  color: #070707;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 3px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.activity-card .file-upload-btn label:hover {
+  background-color: #cecece;
+}
+
+.activity-card .file-upload-btn input {
+  display: none;
+}
+
+.add-milestone {
+  color: green;
+  background-color: white !important;
+}
+/*# sourceMappingURL=activity.styles.css.map */

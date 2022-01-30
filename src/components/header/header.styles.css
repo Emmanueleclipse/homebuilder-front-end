@@ -1,0 +1,114 @@
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #41544b;
+  color: white;
+  padding: 0.51rem 2rem;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .header {
+    display: none;
+  }
+}
+
+.header-left, .header-right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header-left a, .header-right a {
+  color: white;
+}
+
+.header .search-container {
+  margin: 0 8rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 1rem;
+  border-radius: 20px;
+  background-color: #3141397e;
+}
+
+.header .search-container input {
+  padding: 0.7rem;
+  background-color: unset;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.header .search-container input::-webkit-input-placeholder {
+  color: white;
+}
+
+.header .search-container input:-ms-input-placeholder {
+  color: white;
+}
+
+.header .search-container input::-ms-input-placeholder {
+  color: white;
+}
+
+.header .search-container input::placeholder {
+  color: white;
+}
+
+.header .chat-icon,
+.header .notification-icon {
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+
+.header .header-user-profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.header .user-avatar {
+  overflow: hidden;
+  height: 50px;
+  width: 50px;
+  background-color: #929292;
+  border-radius: 50%;
+  margin-right: 1rem;
+  margin-left: 2.5rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.header .user-avatar img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+/*# sourceMappingURL=header.styles.css.map */

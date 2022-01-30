@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,gBAAgB,CAAC;EACf,QAAQ,EAAE,KAAK;EACf,GAAG,EAAE,CAAC;EACN,IAAI,EAAE,CAAC;EACP,OAAO,EAAE,IAAI;EACb,gBAAgB,EAAE,KAAK;EACvB,OAAO,EAAE,CAAC;EACV,KAAK,EAAE,IAAI;CAIZ;;AAXD,AAQE,gBARc,CAQd,SAAS,CAAC;EACR,MAAM,EAAE,OAAO;CAChB",
+    "sources": [
+        "mobile-back-btn.styles.scss"
+    ],
+    "names": [],
+    "file": "mobile-back-btn.styles.css"
+}

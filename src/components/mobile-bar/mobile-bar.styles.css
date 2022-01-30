@@ -1,0 +1,80 @@
+.mobile-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 9;
+}
+
+.mobile-bar a {
+  width: 100%;
+}
+
+.mobile-bar-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+  padding: 1rem 0;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .mobile-bar-item {
+    padding: 1rem 0;
+    font-size: 14px;
+  }
+  .mobile-bar-item span {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 500px) {
+  .mobile-bar-item {
+    padding: 1rem 0;
+    font-size: 12px;
+  }
+  .mobile-bar-item span {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 400px) {
+  .mobile-bar-item {
+    font-size: 12px;
+  }
+  .mobile-bar-item span {
+    font-size: 18px;
+  }
+}
+
+.mobile-bar-item:hover {
+  background-color: #ececec;
+}
+
+@media (min-width: 768px) {
+  .for-mobile {
+    display: none;
+  }
+}
+/*# sourceMappingURL=mobile-bar.styles.css.map */

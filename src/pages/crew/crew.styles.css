@@ -1,0 +1,92 @@
+.crew-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 2rem;
+  padding-left: 5rem;
+}
+
+@media (max-width: 968px) {
+  .crew-container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .crew-container button {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .crew-container {
+    padding-left: 0;
+    padding: 3rem;
+  }
+}
+
+@media (max-width: 468px) {
+  .crew-container {
+    padding: 1rem;
+  }
+}
+
+.crew-container .crew-left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 3rem;
+}
+
+.crew-container .crew-left button {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+@media (max-width: 768px) {
+  .crew-container .crew-left {
+    margin-right: 0rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.crew-container .crew-left .crew-page-title {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.crew-container .crew-table-container {
+  width: 100%;
+  overflow-y: auto;
+}
+
+.crew-container .table {
+  background-color: white;
+}
+
+.crew-container .table .table-name {
+  font-weight: 600;
+}
+
+.crew-container .table > thead {
+  padding: 1rem;
+  background-color: #41544b;
+  color: white;
+}
+
+.crew-container th {
+  font-weight: 500 !important;
+}
+
+.crew-container td {
+  padding: 1rem auto !important;
+}
+/*# sourceMappingURL=crew.styles.css.map */

@@ -1,0 +1,215 @@
+.home-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-top: 4rem;
+}
+
+@media (max-width: 768px) {
+  .home-container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
+.home-container .home-search-control {
+  margin-right: 5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media (max-width: 768px) {
+  .home-container .home-search-control {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 468px) {
+  .home-container .home-search-control {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin-bottom: 1rem;
+  }
+}
+
+.home-container .home-search-control button {
+  margin: 0.4rem;
+  background-color: #398d63;
+  padding: 0.6rem 1rem;
+  border: none;
+  color: white;
+  font-family: inherit;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.home-container .home-search-control button:hover {
+  background-color: #2d7752;
+}
+
+.home-container .home-content {
+  width: 50%;
+}
+
+@media (max-width: 768px) {
+  .home-container .home-content {
+    width: 80%;
+  }
+}
+
+@media (max-width: 468px) {
+  .home-container .home-content {
+    width: 95%;
+  }
+}
+
+.home-container .home-head-card {
+  background-color: #f1f9ff;
+  padding: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.home-container .home-head-card-left div {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #398d63;
+}
+
+.home-container .home-head-card-right {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  text-align: center;
+}
+
+.home-container .home-head-card-left span {
+  font-size: 40px;
+}
+
+.home-container .home-card {
+  background-color: white;
+  padding: 1rem;
+  margin: 0.5rem 0;
+}
+
+.home-container .home-card .home-card-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media (max-width: 468px) {
+  .home-container .home-card .home-card-header {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.home-container .home-card .home-card-header .home-card-left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@media (max-width: 468px) {
+  .home-container .home-card .home-card-header .home-card-left {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.home-container .home-card .home-card-header .home-card-title {
+  font-weight: 500;
+}
+
+.home-container .home-card .home-card-header .home-card-img {
+  margin-right: 15px;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  background-color: #e2e2e2;
+  overflow: hidden;
+}
+
+.home-container .home-card .home-card-header .home-card-img img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.home-container .home-card-detail {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.home-container .home-card-detail .home-card-img {
+  height: 170px;
+  width: 50%;
+  background-color: gray;
+  margin: 2rem 0.5rem;
+}
+
+.home-container .home-card-detail .home-card-img img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.view-activity-btn {
+  background-color: #2d7752;
+  color: white;
+  border: #2d7752;
+  height: 40px;
+  cursor: pointer;
+  padding: .4rem;
+  font-size: 12px  !important;
+}
+
+.edit-activity-btn {
+  background-color: #2d7752;
+  color: white;
+  border: #2d7752;
+  margin-left: 2em;
+  height: 40px;
+  cursor: pointer;
+  padding: .6rem;
+  font-size: 12px  !important;
+}
+/*# sourceMappingURL=Properties.styles.css.map */

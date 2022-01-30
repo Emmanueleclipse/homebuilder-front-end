@@ -1,0 +1,68 @@
+.landing-page-container {
+  background-color: #41544b;
+  height: 100vh;
+  padding: 3rem;
+  padding-top: 7rem;
+}
+
+.landing-page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.landing-page-heading {
+  font-family: "Poppins", sans-serif;
+  color: white;
+}
+
+@media (max-width: 468px) {
+  .landing-page-heading {
+    text-align: center;
+  }
+}
+
+.landing-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 3rem;
+}
+
+.landing-buttons > * {
+  margin: 0 1rem;
+}
+
+@media (max-width: 468px) {
+  .landing-buttons {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .landing-buttons > * {
+    margin: 1rem 0;
+  }
+}
+
+.landing-icon {
+  color: #398d63;
+}
+
+.landing-icon span {
+  font-size: 150px;
+}
+/*# sourceMappingURL=landing.styles.css.map */

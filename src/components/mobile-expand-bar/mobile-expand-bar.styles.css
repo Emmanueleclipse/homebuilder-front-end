@@ -1,0 +1,43 @@
+.mobile-expand-heading {
+  font-size: 22px;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.mobile-expand-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.mobile-expand-item:hover {
+  background-color: #ebebeb;
+}
+
+.mobile-expand-item-left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.mobile-expand-item-left span {
+  margin-top: 2px;
+  margin-right: 6px;
+}
+
+.mobile-expand-item-right span {
+  color: #398d63;
+}
+/*# sourceMappingURL=mobile-expand-bar.styles.css.map */

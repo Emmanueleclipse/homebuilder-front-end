@@ -1,0 +1,116 @@
+.messages-container {
+  padding-top: 3rem;
+  padding: 3rem 9rem;
+}
+
+@media (max-width: 768px) {
+  .messages-container {
+    padding: 3rem;
+  }
+}
+
+@media (max-width: 468px) {
+  .messages-container {
+    padding: 1rem;
+  }
+}
+
+.messages-container .messages-header {
+  text-align: end;
+}
+
+.messages-container .messages-list {
+  margin-top: 3rem;
+}
+
+.messages-container .message-card {
+  margin: 1rem 0;
+  padding: 1rem 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-radius: 6px;
+  background-color: white;
+}
+
+@media (max-width: 568px) {
+  .messages-container .message-card {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .messages-container .message-card > * {
+    margin-bottom: 1rem;
+  }
+}
+
+.messages-container .message-card-left,
+.messages-container .message-card .message-sender {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media (max-width: 568px) {
+  .messages-container .message-card-left,
+  .messages-container .message-card .message-sender {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .messages-container .message-card-left > *,
+  .messages-container .message-card .message-sender > * {
+    margin-bottom: 1rem;
+  }
+}
+
+.messages-container .message-card .message-sender {
+  margin-right: 1rem;
+}
+
+.messages-container .message-card .message-sender-img {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  background-color: #d8d8d8;
+  margin-right: 15px;
+  overflow: hidden;
+}
+
+.messages-container .message-card .message-sender-img img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.messages-container .message-card .message-sender-info-name {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.pagination-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 2rem;
+}
+
+.pagination-container li {
+  cursor: pointer;
+}
+/*# sourceMappingURL=messages.styles.css.map */

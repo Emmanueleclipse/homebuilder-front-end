@@ -1,0 +1,57 @@
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.144);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.popup-crew .close-icon-container {
+  text-align: right;
+  cursor: pointer;
+  -webkit-transform: translateY(-20px);
+          transform: translateY(-20px);
+}
+
+.yes-button {
+  text-align: center;
+}
+
+.yes-button button {
+  margin-top: 2rem;
+}
+
+.yes-button p {
+  margin-top: 1rem;
+}
+
+.yes-button p a {
+  color: #398d63;
+  font-weight: 500;
+}
+
+.no-button {
+  text-align: center;
+}
+
+.no-button button {
+  margin-top: 2rem;
+}
+
+.no-button p {
+  margin-top: 1rem;
+}
+
+.no-button p a {
+  color: #aa2302;
+  font-weight: 500;
+}
+/*# sourceMappingURL=deleteModal.css.map */

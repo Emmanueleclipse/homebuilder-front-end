@@ -1,0 +1,29 @@
+.header-drop-down {
+  position: absolute;
+  background-color: white;
+  color: black;
+  padding: 1rem 0;
+  top: 103%;
+  right: 1%;
+  width: 200px;
+}
+
+.header-drop-down-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.header-drop-down-item:hover {
+  background-color: #e9e9e9;
+}
+
+.header-drop-down-item span {
+  margin-right: 5px;
+}
+/*# sourceMappingURL=header-drop-down.styles.css.map */

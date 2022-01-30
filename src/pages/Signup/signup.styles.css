@@ -1,0 +1,77 @@
+.auth-page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100vh;
+}
+
+@media (max-width: 468px) {
+  .auth-page {
+    background-color: white;
+  }
+}
+
+.auth-page-container {
+  margin-top: 3rem;
+  background-color: white;
+  padding: 4rem;
+  width: 90%;
+  max-width: 550px;
+  border-radius: 5px;
+  border: 1px solid #d6d6d6;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+}
+
+.auth-page-container h2 {
+  color: #398d63 !important;
+}
+
+@media (max-width: 668px) {
+  .auth-page-container {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 468px) {
+  .auth-page-container {
+    padding: 1rem;
+    border: none;
+  }
+}
+
+.auth-page .auth-form > * {
+  margin: 1rem 0;
+}
+
+.auth-page .form-buttons {
+  text-align: center;
+}
+
+.auth-page .form-buttons button {
+  margin-top: 2rem;
+}
+
+.auth-page .form-buttons p {
+  margin-top: 1rem;
+}
+
+.auth-page .form-buttons p a {
+  color: #398d63;
+  font-weight: 500;
+}
+
+.alert {
+  padding: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.alert-error {
+  background-color: #ffcccc;
+  color: #df3c3c;
+}
+/*# sourceMappingURL=signup.styles.css.map */
