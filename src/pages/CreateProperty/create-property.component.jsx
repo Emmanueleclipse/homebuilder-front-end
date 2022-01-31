@@ -22,12 +22,12 @@ const CreateProperty = ({ history }) => {
     loading: propertyLoading
   } = useSelector((state) => state.propertyReducer);
   const { token, loading } = useSelector((state) => state.authReducer);
-
+  const dispatch = useDispatch();
   useEffect(() => {
 
     if (token) dispatch(fetchProperties({ token: token }));
   }, [dispatch, token]);
-  const dispatch = useDispatch();
+  
 
 
 
