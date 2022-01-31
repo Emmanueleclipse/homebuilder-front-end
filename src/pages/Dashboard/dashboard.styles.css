@@ -1,18 +1,14 @@
 .dashboard {
-  margin-left: 250px;
+  margin-left: auto;
+  width: 80%;
   padding-top: 4rem;
-}
-
-@media (max-width: 980px) {
-  .dashboard {
-    margin-left: 125px;
-  }
 }
 
 @media (max-width: 768px) {
   .dashboard {
     margin-left: 0;
     margin-bottom: 4rem;
+    width: 100%;
   }
 }
 
