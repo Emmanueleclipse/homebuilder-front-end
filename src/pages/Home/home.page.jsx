@@ -7,16 +7,95 @@ import "./home.styles.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchActivities } from "../../redux/actions/activityAction";
 import { connect } from "react-redux";
+import axios from "../../axios"
 
 const Home = (props) => {
+  const [feeds, setFeeds] = React.useState([]);
 
+  function convertDate(date) {
+    return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
+  }
+
+  function timeSetting(date){
+    let date_string = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
+
+    return new Date(date_string);
+  }
 
   useEffect(() => {
     const property_id = props.match.params.property_id;
     //  ?props.history.push('/')
-    // console.log(props.token)
     if (props.token) {
-      props.fetchAllActivities(props.token, property_id);
+      axios.get("api/property/", {
+        headers: { Authorization: `Bearer ${props.token}` },
+      }).then(res => {
+        let properties = res.data;
+        let activities_arrr = [];
+        let current_date = new Date();
+
+        for (let i = 0; i < properties.length; i++) {
+          let activities = properties[i].activities;
+
+          if (activities.length > 0) {
+
+            for (let j = 0; j < activities.length; j++) {
+              let from_date = new Date(activities[j]._from);
+
+              const diffTime = Math.abs(timeSetting(from_date) - timeSetting(current_date));
+              const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+              if (diffDays > 0 && (from_date > current_date || convertDate(current_date) === convertDate(from_date))) {
+
+                if (diffDays === 1 ) {
+                  activities_arrr.push({
+                    property_id: properties[i].pk,
+                    property_name: properties[i].name,
+                    address: properties[i].address,
+                    activity_name: activities[j].milestone_name,
+                    activity_status: activities[j].status,
+                    date: activities[j]._from,
+                    view_text: "Today",
+                    description : activities[j].description,
+                    activity_id : activities[j].pk
+                  })
+                }
+
+                if (diffDays === 2) {
+                  activities_arrr.push({
+                    property_id: properties[i].pk,
+                    property_name: properties[i].name,
+                    address: properties[i].address,
+                    activity_name: activities[j].milestone_name,
+                    activity_status: activities[j].status,
+                    date: activities[j]._from,
+                    view_text: "Tomorrow",
+                    description : activities[j].description,
+                    activity_id : activities[j].pk
+                  })
+                }
+
+                if (diffDays > 2) {
+                  activities_arrr.push({
+                    property_id: properties[i].pk,
+                    property_name: properties[i].name,
+                    address: properties[i].address,
+                    activity_name: activities[j].milestone_name,
+                    activity_status: activities[j].status,
+                    date: activities[j]._from,
+                    view_text: activities[j]._from,
+                    description : activities[j].description,
+                    activity_id : activities[j].pk
+                  })
+                }
+              }
+            }
+          }
+        }
+
+        setFeeds(activities_arrr)
+
+
+      }).catch(err => console.log(err))
     }
   }, [props.token]);
 
@@ -26,25 +105,29 @@ const Home = (props) => {
         <h2 className="text-center w-100">Feed</h2>
       </div>
       <div className="home-container custom-container">
-        <div className="feed-main-card-div px-3 pt-3 pb-4">
-          <p className="text-center mb-3">Today</p>
-          <div className="d-sm-flex card-inner-details justify-content-between">
-            <div>
-              <p className="fw-bold">ChandTesting</p>
-              <p className="mb-2">E-300,CS</p>
-              <p>Milestone:1</p>
-              <p>20</p>
+        {feeds.length > 0 && (
+          feeds.map((item, index) => (
+            <div key={index} className="feed-main-card-div my-3 px-3 pt-3 pb-4">
+              <p className="text-center mb-3">{item.view_text}</p>
+              <div className="d-sm-flex card-inner-details justify-content-between">
+                <div>
+                  <p className="fw-bold">{item.property_name}</p>
+                  <p className="mb-2">{item.address}</p>
+                  <p>{item.activity_name}</p>
+                  {/* <p>20</p> */}
+                </div>
+                <div className="feed-status">
+                  <p>{item.activity_status}</p>
+                </div>
+              </div>
+              <p className="mt-3 text-14 text-black-50">{item.description}</p>
+              <div className="btns-div d-sm-flex mt-3">
+                <a className="btn-light-color" href="">View Details</a>
+                <a className="btn-green-color" href="">View Milestones</a>
+              </div>
             </div>
-            <div className="feed-status">
-              <p>pending</p>
-            </div>
-          </div>
-          <p className="mt-3 text-14 text-black-50">Testing</p>
-          <div className="btns-div d-sm-flex mt-3">
-            <a className="btn-light-color" href="">View Details</a>
-            <a className="btn-green-color" href="">View Milestones</a>
-          </div>
-        </div>
+          ))
+        )}
       </div>
       {/* <div className="home-container">
         <div className="home-search">

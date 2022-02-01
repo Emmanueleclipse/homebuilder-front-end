@@ -11,7 +11,6 @@ export const fetchProperties =
       };
       dispatch({ type: propertyTypes.FETCH_PROPERTY_START });
       axios.get("api/property/", config).then(response => {
-        console.log(response.data)
         dispatch({
           type: propertyTypes.FETCH_PROPERTY_SUCCESS,
           properties: response.data,
