@@ -29,7 +29,7 @@ export const fetchProperties =
 
 export const createProperty =
   ({ property, token }) => {
-
+    console.log(property)
     return dispatch => {
       const config = {
         headers: { Authorization: `Bearer ${token}` },

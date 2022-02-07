@@ -117,7 +117,24 @@
     }
   }
 }
-
+.select-input {
+  padding: 0.7rem 1rem;
+  min-width: 170px;
+  border: none;
+  font-size: 13px;
+  font-family: inherit;
+  background-color: rgb(255, 255, 255) !important;
+  border-radius: 10px;
+  margin-left: 1% !important;
+  margin-top: 1%;
+  border: 1px solid rgb(231, 231, 231);
+  outline: none;
+  transition: all 0.2s ease-in-out;
+  &:focus {
+    outline: none;
+    border: 1px solid #398d63bd;
+  }
+}
 .text-14{
   font-size: 14px;
 }

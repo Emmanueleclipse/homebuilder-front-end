@@ -37,17 +37,18 @@ export const createActivity =({ activity, token }) =>{
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
+    console.log(activity)
 
     dispatch({ type: activityTypes.CREATE_ACTIVITY_START });
   
     axios.post("/api/activity/",activity,config).then((response)=>{
-      //console.log(response)
+      console.log(response)
       dispatch({
         type: activityTypes.CREATE_ACTIVITY_SUCCESS,
         success: response.ok,
       });
     }).catch((error)=>{
-      console.log(error)
+      console.log(error.response)
       dispatch({
         type: activityTypes.CREATE_ACTIVITY_FAILURE,
         error:
