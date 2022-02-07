@@ -141,6 +141,7 @@
 
 .dashboard-page-heading{
   display: flex;
+ 
   position: sticky;
   top: 60px;
   z-index: 1;
@@ -150,7 +151,9 @@
 .custom-heading{
 
   border-top: 6px solid #696c68;
-
+  label{
+    color: black;
+  }
   h2{
     color: #30332f;
   }

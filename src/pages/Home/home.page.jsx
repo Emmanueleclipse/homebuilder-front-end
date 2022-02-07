@@ -115,7 +115,7 @@ const Home = (props) => {
         <label htmlFor="filters">Select View:</label>
         <select
           name="filters"
-          className="select-input "
+          className="select-input text-center"
           onChange={(e) => setFilter(e.target.value)}
         >
           <option value="today">today</option>
