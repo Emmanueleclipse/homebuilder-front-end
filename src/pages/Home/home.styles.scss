@@ -140,10 +140,11 @@
 }
 
 .dashboard-page-heading{
-  
+  display: flex;
   position: sticky;
   top: 60px;
   z-index: 1;
+  flex-direction: column;
 }
 
 .custom-heading{

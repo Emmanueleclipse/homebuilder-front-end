@@ -11,7 +11,7 @@ import axios from "../../axios"
 
 const Home = (props) => {
   const [feeds, setFeeds] = React.useState([]);
-  const [filter, setFilter] = React.useState('all')
+  const [filter, setFilter] = React.useState('today')
   let activities_arrr = [];
   function convertDate(date) {
     return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
@@ -112,14 +112,15 @@ const Home = (props) => {
   return (
     <div className="dashboard-page">
       <div className="dashboard-page-heading custom-heading">
-        
+        <label htmlFor="filters">Select View:</label>
         <select
           name="filters"
           className="select-input "
           onChange={(e) => setFilter(e.target.value)}
         >
-          <option value="all">all</option>
           <option value="today">today</option>
+
+          <option value="all">all</option>
         </select>
       </div>
      
