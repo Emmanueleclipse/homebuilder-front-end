@@ -29,6 +29,7 @@ const Home = (props) => {
       axios.get("api/property/", {
         headers: { Authorization: `Bearer ${props.token}` },
       }).then(res => {
+        console.log(res.data)
         let properties = res.data;
         let activities_arrr = [];
         let current_date = new Date();
@@ -92,7 +93,7 @@ const Home = (props) => {
           }
         }
 
-        setFeeds(activities_arrr)
+        setFeeds(properties)
 
 
       }).catch(err => console.log(err))
@@ -123,7 +124,7 @@ const Home = (props) => {
               <p className="mt-3 text-14 text-black-50">{item.description}</p>
               <div className="btns-div d-sm-flex mt-3">
                 <a className="btn-light-color" href="">View Details</a>
-                <a className="btn-green-color" href="">View Milestones</a>
+                <a className="btn-green-color" href="" onClick={()=>console.log(item.activities)} >View Milestones</a>
               </div>
             </div>
           ))
