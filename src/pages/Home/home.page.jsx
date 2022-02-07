@@ -109,10 +109,10 @@ const Home = (props) => {
         {feeds.length > 0 && (
           feeds.map((item, index) => (
             <div key={index} className="feed-main-card-div my-3 px-3 pt-3 pb-4">
-              <p className="text-center mb-3">{item.view_text}</p>
+              <p className="text-center mb-3">{item.created_at}</p>
               <div className="d-sm-flex card-inner-details justify-content-between">
                 <div>
-                  <p className="fw-bold">{item.property_name}</p>
+                  <p className="fw-bold">{item.name}</p>
                   <p className="mb-2">{item.address}</p>
                   <p>{item.activity_name}</p>
                   {/* <p>20</p> */}
