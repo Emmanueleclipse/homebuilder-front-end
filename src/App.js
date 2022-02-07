@@ -23,6 +23,8 @@ import MobileExpand from "./components/mobile-expand-bar/mobile-expand-bar";
 import PaymentCancel from "./pages/PaymentCancel/PaymentCancel";
 import PaymentSuccess from "./pages/PaymentSuccess/PaymentSuccess";
 import ResetPassword from "./pages/ResetPassword/reset-password.component";
+import milestonePage from "./pages/Milestones/milestone.page";
+
 class App extends Component {
 
     state = {}
@@ -56,6 +58,8 @@ class App extends Component {
                     <Route exact path="/reset-password" component={ResetPassword} />
 
                     <Dashboard>
+                        <Route exact path="/milestones/:id" component={milestonePage} />
+
                         <Route exact path='/' component={Home} />
                         <Route exact path='/home' component={Home} />
                         <Route exact path="/setting" component={Setting} />

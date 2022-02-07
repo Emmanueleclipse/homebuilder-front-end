@@ -3,17 +3,19 @@ import Button from "../../components/button/button.component";
 import FormInput from "../../components/form-input/form-input.component";
 
 
-import "./home.styles.scss";
+import "./milestones.styles.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchActivities } from "../../redux/actions/activityAction";
 import { connect } from "react-redux";
 import axios from "../../axios"
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 
-const Home = (props) => {
+const Milestones= (props) => {
   const [feeds, setFeeds] = React.useState([]);
   const [filter, setFilter] = React.useState('today')
+  const { id } = useParams();
+
   let activities_arrr = [];
   function convertDate(date) {
     return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
@@ -25,20 +27,42 @@ const Home = (props) => {
     return new Date(date_string);
   }
 
+  const deleteMilestone =(item_toDelete)=>{
+    setFeeds(feeds.filter(item=> item.activity_id!==item_toDelete.activity_id))
+  }
+
   useEffect(() => {
-    const property_id = props.match.params.property_id;
+    //const property_id = this.router.params.id;
     //  ?props.history.push('/')
-    console.log(filter)
+    console.log(id)
     if (props.token) {
-      axios.get("api/property/", {
+      axios.get("api/property/"+id, {
         headers: { Authorization: `Bearer ${props.token}` },
       }).then(res => {
         console.log(res.data)
-        let properties = res.data;
+        let property = res.data;
        
         let current_date = new Date();
+        
+        property.activities.map(item=>{
 
-        for (let i = 0; i < properties.length; i++) {
+          activities_arrr.push({
+            property_id: property.pk,
+            property_name: property.name,
+            address: property.address,
+            activity_name: item.milestone_name,
+            activity_status: item.status,
+            date: item._to,
+            //view_text: "Today",
+            description : item.description,
+            activity_id : item.pk
+          })
+
+          return true;
+
+        })
+
+        /*for (let i = 0; i < properties.length; i++) {
           let activities = properties[i].activities;
 
           if (activities.length > 0) {
@@ -96,15 +120,15 @@ const Home = (props) => {
               }
             }
           }
-        }
+        }*/
 
-        if(filter==='today'){
-          setFeeds(activities_arrr.filter(i=> i.view_text==='Today'))
-
-        }else{
+        
+        
           setFeeds(activities_arrr)
 
-        }
+        
+
+        console.log(activities_arrr)
 
 
       }).catch(err => console.log(err))
@@ -114,107 +138,36 @@ const Home = (props) => {
   return (
     <div className="dashboard-page">
       <div className="dashboard-page-heading custom-heading">
-        <label htmlFor="filters">Select View:</label>
-        <select
-          name="filters"
-          className="select-input text-center"
-          onChange={(e) => setFilter(e.target.value)}
-        >
-          <option value="today">today</option>
-
-          <option value="all">all</option>
-        </select>
+        <button className='msgButton'>Messages</button>
       </div>
      
-      <div className="home-container custom-container">
+      <div className="milestones-container custom-container">
         {feeds.length > 0 && (
           feeds.map((item, index) => (
             <div key={index} className="feed-main-card-div my-3 px-3 pt-3 pb-4">
               <p className="text-center mb-3">{item.view_text}</p>
               <div className="d-sm-flex card-inner-details justify-content-between">
                 <div>
-                  <p className="fw-bold">{item.property_name}</p>
+                  <p className="fw-bold">{item.activity_name}</p>
                   <p className="mb-2">{item.address}</p>
-                  <p>{item.activity_name}</p>
+                  <p>{item.date}</p>
                   {/* <p>20</p> */}
                 </div>
-                <div className="feed-status">
-                  <p>{item.activity_status}</p>
-                </div>
+                <button className="btn-delete" onClick={()=>deleteMilestone(item)}> 
+                   delete
+                </button>
               </div>
-              <p className="mt-3 text-14 text-black-50">{item.description}</p>
               <div className="btns-div d-sm-flex mt-3">
-                <a className="btn-light-color" href="">View Details</a>
-                <Link to={"/milestones/"+item.property_id} className="btn-green-color">
 
-                <a className="btn-green-color" href="" onClick={()=>console.log(item)} >View Milestones</a>
-                </Link>
+                <button className="btn-green-color" href="#" onClick={()=>console.log(item)} >Submit</button>
+                
 
               </div>
             </div>
           ))
         )}
       </div>
-      {/* <div className="home-container">
-        <div className="home-search">
-          <label htmlFor="">Enter date : </label>
-          <div className="home-search-control">
-            <FormInput type="date" />
-            <button>Submit</button>
-          </div>
-        </div>
-        <div className="home-content">
-          <div className="home-head-card">
-            <div className="home-head-card-left">
-              <div>Today</div>
-              <span class="material-icons">settings</span>
-            </div>
-            <div className="home-head-card-right">
-              <Button type="main">Reports</Button>
-            </div>
-          </div>
-          <div className="home-cards-list">
-            {
-              props.activityLoading ?
-                <p>Loading activities .....</p>
-                :
-                props.activities.length > 0 ?
-
-                  props.activities.map((activity) => (
-                    <div className="home-card" key={activity.pk}>
-                      <div className="home-card-header">
-                        <div className="home-card-left">
-                          <div className="home-card-img">
-                            <img
-                              src={`http://homebuilder.herokuapp.com${activity.image}`}
-                              alt=""
-                            />
-                          </div>
-                          <div className="home-card-info">
-                            <div className="home-card-title">
-                              {activity.milestone_name}
-                            </div>
-                            <div className="home-card-subtitle">
-                              {activity.description}
-                            </div>
-                          </div>
-                        </div>
-                        <div className="home-card-right">
-                          <span class="material-icons">dns</span>
-                          <span class="material-icons">attach_money</span>
-                        </div>
-                      </div>
-                      <div className="home-card-detail"></div>
-                    </div>
-                  ))
-                  :
-                  <h6 style={{ marginTop: '1rem' }}>No Activity Found</h6>
-
-            }
-
-          </div>
-        </div>
-      </div> */}
+      
     </div>
   );
 };
@@ -234,4 +187,4 @@ const mapDispatchToProps = dispatch => {
     'fetchAllActivities': (token, property_id) => dispatch(fetchActivities({ token, property_id }))
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Milestones);
