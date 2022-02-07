@@ -112,15 +112,17 @@ const Home = (props) => {
   return (
     <div className="dashboard-page">
       <div className="dashboard-page-heading custom-heading">
-        <h2 className="text-center w-100">Feed</h2>
-      </div>
-      <div className="filters">
-        <select name="filters" className='select-input' onChange={(e) => setFilter(e.target.value)}
->
+        
+        <select
+          name="filters"
+          className="select-input "
+          onChange={(e) => setFilter(e.target.value)}
+        >
           <option value="all">all</option>
           <option value="today">today</option>
         </select>
       </div>
+     
       <div className="home-container custom-container">
         {feeds.length > 0 && (
           feeds.map((item, index) => (
