@@ -19,7 +19,7 @@ const Milestones = (props) => {
   const [property, setProperty] = React.useState('')
   const [message, setMessage] = React.useState('')
   const [messages, setMessages] = React.useState([])
-
+  const { user } = useSelector((state) => state.authReducer);
 
 
 
@@ -59,6 +59,68 @@ const Milestones = (props) => {
     setMessage('')
     console.log(messages)
   }
+
+  const aceptar = (item) =>{
+    axios
+    .get("/api/activity/decline/" + item.activity_id, {
+      headers: { Authorization: `Bearer ${props.token}` },
+    })
+    .then((res) => {
+      toast.success(item.activity_name + " " + "has been accepted", {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err.response);
+      toast.error(err.response.data.detail, {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    });
+  }
+
+  const changes=(item)=>{
+    axios
+    .get("/api/activity/decline/" + item.activity_id, {
+      headers: { Authorization: `Bearer ${props.token}` },
+    })
+    .then((res) => {
+      toast.warning(item.activity_name + " " + "request changes", {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err.response);
+      toast.error(err.response.data.detail, {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    });
+  }
   
   
 
@@ -96,8 +158,10 @@ const Milestones = (props) => {
   useEffect(() => {
     //const property_id = this.router.params.id;
     //  ?props.history.push('/')
-    console.log(id);
+    console.log('l');
     if (props.token) {
+      console.log(user)
+
       axios
         .get("api/property/" + id, {
           headers: { Authorization: `Bearer ${props.token}` },
@@ -265,7 +329,7 @@ const Milestones = (props) => {
                     className="mb-2"
                     style={{
                       color:
-                        item.activity_status !== "change_requested"
+                        item.activity_status !== "change requested"
                           ? "green"
                           : "red",
                     }}
@@ -281,7 +345,8 @@ const Milestones = (props) => {
                    delete
           </button>*/}
               </div>
-              <div className="btns-div d-sm-flex mt-3">
+              {user.role === 'HOMEBUILDER' &&
+                <div className="btns-div d-sm-flex mt-3">
                 {item.activity_status !== "Awaiting feedback" && (
                   <button
                     className="btn-green-color"
@@ -295,6 +360,30 @@ const Milestones = (props) => {
                   <button className="btn-gray-color" href="#"></button>
                 )}
               </div>
+
+              }
+              {user.role === 'HOMEOWNER' &&
+                  <div className="btns-div d-sm-flex mt-3">
+                 
+                    <button
+                      className="btn-light-color"
+                      href="#"
+                      onClick={() => aceptar(item)}
+                    >
+                      Aceptar
+                    </button>
+                    <button
+                      className="btn-green-color"
+                      href="#"
+                      onClick={() => changes(item)}
+                    >
+                      Request Change
+                    </button>
+                  
+                  
+                </div>
+
+              }
             </div>
           ))}
       </div>

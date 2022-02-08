@@ -114,7 +114,7 @@ const Home = (props) => {
         }
 
 
-      }).catch(err => console.log(err))
+      }).catch(err => console.log(err.response))
     }
   }, [props.token, filter]);
 
