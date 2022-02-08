@@ -9,6 +9,8 @@ import { fetchActivities } from "../../redux/actions/activityAction";
 import { connect } from "react-redux";
 import axios from "../../axios"
 import { Link, useParams } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 
 const Milestones= (props) => {
@@ -30,6 +32,51 @@ const Milestones= (props) => {
   const deleteMilestone =(item_toDelete)=>{
     setFeeds(feeds.filter(item=> item.activity_id!==item_toDelete.activity_id))
   }
+
+  const notify = () => toast.success('sent to review', {
+    position: "bottom-right",
+    autoClose: 2000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    });
+
+  const submit = (item) =>{
+    
+
+      axios.get("/api/activity/submit/"+item.activity_id, {
+        
+        headers: { Authorization: `Bearer ${props.token}` },
+      }).then(res => {
+        toast.success(item.activity_name+' '+'sent to review', {
+          position: "bottom-right",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
+        console.log(res)
+      }).catch(err => {
+        console.log(err.response)
+        toast.error(err.response.data.detail, {
+          position: "bottom-right",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
+      })
+
+    
+    
+  }
+
 
   useEffect(() => {
     //const property_id = this.router.params.id;
@@ -137,7 +184,7 @@ const Milestones= (props) => {
 
         
         
-
+          console.log(feeds)
 
 
       }).catch(err => console.log(err))
@@ -170,8 +217,15 @@ const Milestones= (props) => {
           </button>*/}
               </div>
               <div className="btns-div d-sm-flex mt-3">
+                {item.activity_status !== 'Awaiting feedback' &&
+                  
+                  <button className="btn-green-color" href="#" onClick={()=>submit(item)} >Submit</button>
 
-                <button className="btn-green-color" href="#" onClick={()=>console.log(item)} >Submit</button>
+                }
+                {item.activity_status === 'Awaiting feedback' &&
+                  <button className="btn-gray-color" href="#" ></button>
+                  
+                }
                 
 
               </div>
@@ -179,6 +233,9 @@ const Milestones= (props) => {
           ))
         )}
       </div>
+
+      <ToastContainer />
+
       
     </div>
   );

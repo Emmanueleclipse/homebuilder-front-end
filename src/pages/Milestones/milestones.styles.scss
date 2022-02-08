@@ -218,6 +218,9 @@ hr{
       border: none;
       margin: auto;
     }
+    .btn-green-color:active{
+      background-color: #124e2a;
+    }
     .btn-light-color{
       background-color: #e1e4e1;
     }
@@ -229,6 +232,9 @@ hr{
     }
     .btn-green-color{
       color: white;
+    }
+    .btn-gray-color{
+      color: rgb(65, 65, 65);
     }
    
   }
