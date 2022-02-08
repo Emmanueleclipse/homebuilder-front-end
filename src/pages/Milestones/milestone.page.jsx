@@ -139,6 +139,7 @@ const Milestones= (props) => {
     <div className="dashboard-page">
       <div className="dashboard-page-heading custom-heading">
         <button className='msgButton'>Messages</button>
+        <hr />  
       </div>
      
       <div className="milestones-container custom-container">
@@ -153,9 +154,10 @@ const Milestones= (props) => {
                   <p>{item.date}</p>
                   {/* <p>20</p> */}
                 </div>
+                {/*}
                 <button className="btn-delete" onClick={()=>deleteMilestone(item)}> 
                    delete
-                </button>
+          </button>*/}
               </div>
               <div className="btns-div d-sm-flex mt-3">
 
