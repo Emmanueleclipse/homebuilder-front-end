@@ -53,6 +53,7 @@ const Milestones= (props) => {
             activity_name: item.milestone_name,
             activity_status: item.status,
             date: item._to,
+            created_at:item.created_at,
             //view_text: "Today",
             description : item.description,
             activity_id : item.pk
@@ -123,12 +124,20 @@ const Milestones= (props) => {
         }*/
 
         
+          //sort for order from oldest to newest
+          setFeeds(activities_arrr.sort((a, b) => {
+            if (a.created_at > b.created_at) {
+              return 1
+            } else if (a.created_at < b.created_at) {
+              return -1
+            }
+            return 0
+          }))
         
-          setFeeds(activities_arrr)
 
         
+        
 
-        console.log(activities_arrr)
 
 
       }).catch(err => console.log(err))
@@ -149,9 +158,10 @@ const Milestones= (props) => {
               <p className="text-center mb-3">{item.view_text}</p>
               <div className="d-sm-flex card-inner-details justify-content-between">
                 <div>
-                  <p className="fw-bold">{item.activity_name}</p>
-                  <p className="mb-2">{item.address}</p>
+                  <p className="fw-bold">{index+1}) {item.activity_name}</p>
+                  <p className="mb-2" style={{ color: item.activity_status !== "revision"? 'green': 'red'}}>{item.activity_status}</p>
                   <p>{item.date}</p>
+                  
                   {/* <p>20</p> */}
                 </div>
                 {/*}
