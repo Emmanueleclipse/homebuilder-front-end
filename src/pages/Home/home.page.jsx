@@ -102,7 +102,14 @@ const Home = (props) => {
           setFeeds(activities_arrr.filter(i=> i.view_text==='Today'))
 
         }else{
-          setFeeds(activities_arrr)
+          setFeeds(activities_arrr.sort((a, b) => {
+            if (a.date > b.date) {
+              return 1
+            } else if (a.date < b.date) {
+              return -1
+            }
+            return 0
+          }))
 
         }
 

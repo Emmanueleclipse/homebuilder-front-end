@@ -159,7 +159,7 @@ const Milestones= (props) => {
               <div className="d-sm-flex card-inner-details justify-content-between">
                 <div>
                   <p className="fw-bold">{index+1}) {item.activity_name}</p>
-                  <p className="mb-2" style={{ color: item.activity_status !== "revision"? 'green': 'red'}}>{item.activity_status}</p>
+                  <p className="mb-2" style={{ color: item.activity_status !== "change_requested"? 'green': 'red'}}>{item.activity_status}</p>
                   <p>{item.date}</p>
                   
                   {/* <p>20</p> */}
