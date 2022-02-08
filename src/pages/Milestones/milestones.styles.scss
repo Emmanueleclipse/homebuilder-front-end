@@ -145,6 +145,11 @@
   height: 50px;
   color: green;
   border-radius: 50px;
+  border: 1px  solid black;
+}
+
+.msgButton:hover{
+  border-color: green ;
 }
 hr{
   
