@@ -105,6 +105,7 @@ const Milestones = (props) => {
         .then((res) => {
           console.log(res.data);
           setProperty(res.data);
+          let property = res.data;
 
           let current_date = new Date();
 
