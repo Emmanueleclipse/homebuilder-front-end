@@ -62,10 +62,10 @@ const Milestones = (props) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
-      icon: "warning",
+      
       showCancelButton: true,
       confirmButtonColor: "#398d63",
-      cancelButtonColor: "#d33",
+      cancelButtonColor: "#FFFFFF      ",
       confirmButtonText: "Yes, accept it!",
     }).then((result) => {
       if (result.isConfirmed) {
@@ -115,10 +115,10 @@ const Milestones = (props) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
-      icon: "warning",
+    
       showCancelButton: true,
       confirmButtonColor: "#398d63",
-      cancelButtonColor: "#d33",
+      cancelButtonColor: "#FFFFFF      ",
       confirmButtonText: "Yes, Request changes!",
     }).then((result) => {
       if (result.isConfirmed) {
@@ -168,10 +168,10 @@ const Milestones = (props) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
-      icon: "warning",
+    
       showCancelButton: true,
       confirmButtonColor: "#398d63",
-      cancelButtonColor: "#d33",
+      cancelButtonColor: "#FFFFFF      ",
       confirmButtonText: "Yes, send it!",
     }).then((result) => {
       if (result.isConfirmed) {
