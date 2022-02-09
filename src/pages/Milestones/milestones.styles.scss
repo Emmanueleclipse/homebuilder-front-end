@@ -185,9 +185,7 @@ hr {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   position: relative;
   top: -50px;
-  p {
-    margin-bottom: 0;
-  }
+ 
 
   .btn-delete {
     background-color: white;
@@ -201,9 +199,11 @@ hr {
     border: 1px solid rgb(134, 133, 133);
     border-radius: 40px;
     height: 25px;
-    
-    text-align: center;
-    width: 160px ;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: left;
+   
+
   }
 
   

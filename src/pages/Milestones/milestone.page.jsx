@@ -11,27 +11,21 @@ import { Link, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Popup from "reactjs-popup";
-import Swal from 'sweetalert2'
-
+import Swal from "sweetalert2";
 
 const Milestones = (props) => {
   const [feeds, setFeeds] = React.useState([]);
   const [filter, setFilter] = React.useState("today");
   const { id } = useParams();
-  const [property, setProperty] = React.useState('')
-  const [message, setMessage] = React.useState('')
-  const [messages, setMessages] = React.useState([])
+  const [property, setProperty] = React.useState("");
+  const [message, setMessage] = React.useState("");
+  const [messages, setMessages] = React.useState([]);
   const { user } = useSelector((state) => state.authReducer);
-
-
-
 
   let activities_arrr = [];
   function convertDate(date) {
     return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
   }
-
-
 
   function timeSetting(date) {
     let date_string = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
@@ -41,167 +35,194 @@ const Milestones = (props) => {
 
   function handleMessage(event) {
     console.log(event.target.value);
-    setMessage(event.target.value)
+    setMessage(event.target.value);
   }
 
-  const sendMsg = (event) =>{
-    console.log(event)
-   event.preventDefault()
-    let senders = ['me','other']
-    let from=senders[Math.floor(Math.random() * 2 + 0)]
-    let newMsg={
-      id:'1',
-      from:from,
-      to:'dadawd',
-      text:message
-    }
+  const sendMsg = (event) => {
+    console.log(event);
+    event.preventDefault();
+    let senders = ["me", "other"];
+    let from = senders[Math.floor(Math.random() * 2 + 0)];
+    let newMsg = {
+      id: "1",
+      from: from,
+      to: "dadawd",
+      text: message,
+    };
 
-    messages.push(newMsg)
-    setMessages(messages)
-    setMessage('')
-    console.log(messages)
-  }
+    messages.push(newMsg);
+    setMessages(messages);
+    setMessage("");
+    console.log(messages);
+  };
 
-  const aceptar = (item) =>{
+  const toAccept = (item) => {
+    item.activity_status = "completed";
+
     Swal.fire({
-      title: 'Are you sure?',
+      title: "Are you sure?",
       text: "You won't be able to revert this!",
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, Accept it!'
+      confirmButtonColor: "#398d63",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, accept it!",
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-        .get("/api/activity/approve/" + item.activity_id, {
-          headers: { Authorization: `Bearer ${props.token}` },
-        })
-        .then((res) => {
-          toast.success(item.activity_name + " " + "has been accepted", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
+          .get("/api/activity/approve/" + item.activity_id, {
+            headers: { Authorization: `Bearer ${props.token}` },
+          })
+          .then((res) => {
+            toast.success(item.activity_name + " " + "sent to review", {
+              position: "bottom-right",
+              autoClose: 2000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+            item.activity_status = "completed";
+            setFeeds(
+              feeds.map((i) => {
+                if (i.activity_id === item.activity_id) {
+                  i = item;
+                  console.log(i);
+                }
+                return i;
+              })
+            );
+            // item.activity_status='Awaiting feedback';
+          })
+          .catch((err) => {
+            console.log(err.response);
+            toast.error(err.response.data.detail, {
+              position: "bottom-right",
+              autoClose: 2000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
           });
-          item.activity_status='completed'
-        })
-        .catch((err) => {
-          console.log(err.response);
-          toast.error(err.response.data.detail, {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-        });
       }
-    })
-   
-  }
+    });
+  };
 
-  const changes=(item)=>{
+  const changes = (item) => {
     Swal.fire({
-      title: 'Are you sure?',
+      title: "Are you sure?",
       text: "You won't be able to revert this!",
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#398d63',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, Request changes!'
+      confirmButtonColor: "#398d63",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Request changes!",
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-        .get("/api/activity/decline/" + item.activity_id, {
-          headers: { Authorization: `Bearer ${props.token}` },
-        })
-        .then((res) => {
-          toast.warning(item.activity_name + " " + "request changes", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
+          .get("/api/activity/decline/" + item.activity_id, {
+            headers: { Authorization: `Bearer ${props.token}` },
+          })
+          .then((res) => {
+            toast.warning(item.activity_name + " " + "request changes", {
+              position: "bottom-right",
+              autoClose: 2000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+            console.log(res);
+            item.activity_status = "request changes";
+            setFeeds(
+              feeds.map((i) => {
+                if (i.activity_id === item.activity_id) {
+                  i = item;
+                  console.log(i);
+                }
+                return i;
+              })
+            );
+          })
+          .catch((err) => {
+            console.log(err.response);
+            toast.error(err.response.data.detail, {
+              position: "bottom-right",
+              autoClose: 2000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
           });
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err.response);
-          toast.error(err.response.data.detail, {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-        });
       }
-    })
-   
-  }
-  
-  
+    });
+  };
 
   const submit = (item) => {
     Swal.fire({
-      title: 'Are you sure?',
+      title: "Are you sure?",
       text: "You won't be able to revert this!",
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#398d63',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, send it!'
+      confirmButtonColor: "#398d63",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, send it!",
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-      .get("/api/activity/submit/" + item.activity_id, {
-        headers: { Authorization: `Bearer ${props.token}` },
-      })
-      .then((res) => {
-        toast.success(item.activity_name + " " + "sent to review", {
-          position: "bottom-right",
-          autoClose: 2000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        item.activity_status='Awaiting feedback';
-      })
-      .catch((err) => {
-        console.log(err.response);
-        toast.error(err.response.data.detail, {
-          position: "bottom-right",
-          autoClose: 2000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      });
+          .get("/api/activity/submit/" + item.activity_id, {
+            headers: { Authorization: `Bearer ${props.token}` },
+          })
+          .then((res) => {
+            toast.success(item.activity_name + " " + "sent to review", {
+              position: "bottom-right",
+              autoClose: 2000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+            item.activity_status = "Awaiting feedback";
+            setFeeds(
+              feeds.map((i) => {
+                if (i.activity_id === item.activity_id) {
+                  i = item;
+                  console.log(i);
+                }
+                return i;
+              })
+            );
+            // item.activity_status='Awaiting feedback';
+          })
+          .catch((err) => {
+            console.log(err.response);
+            toast.error(err.response.data.detail, {
+              position: "bottom-right",
+              autoClose: 2000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          });
       }
-    })
-    
+    });
   };
 
   useEffect(() => {
     //const property_id = this.router.params.id;
     //  ?props.history.push('/')
-    console.log('l');
+    console.log("l");
     if (props.token) {
-      console.log(user)
+      console.log(user);
 
       axios
         .get("api/property/" + id, {
@@ -307,13 +328,13 @@ const Milestones = (props) => {
         })
         .catch((err) => console.log(err));
     }
-  }, [props.token, filter]);
+  }, [props.token]);
 
   return (
     <div className="dashboard-page">
       <div className="dashboard-page-heading custom-heading">
-      <span class="material-icons">chat</span>
-      <p>Messages</p>
+        <span class="material-icons">chat</span>
+        <p>Messages</p>
 
         {/*<Popup trigger={<button className="msgButton">Messages</button>} modal>
           
@@ -356,31 +377,46 @@ const Milestones = (props) => {
           </div>
           
                   </Popup>*/}
-        
       </div>
 
       <div className="milestones-container custom-container">
         {feeds.length > 0 &&
           feeds.map((item, index) => (
-            <div key={index} className="feed-main-card-div my-3 px-3 pt-3 pb-4">
+            <div
+              key={index}
+              style={{ display: item === undefined ? "none" : "block" }}
+              className="feed-main-card-div my-3 px-3 pt-3 pb-4"
+            >
+              {console.log(feeds)}
               <p className="text-center mb-3">{item.view_text}</p>
               <div className="d-sm-flex card-inner-details justify-content-between">
                 <div>
                   <p className="fw-bold">
                     {index + 1}. {item.activity_name}
                   </p>
-                  <div id='status-container'>
-                  <p
-                    className="mb-2"
+                  <div
+                    id="status-container"
                     style={{
-                      color:
-                        item.activity_status !== "change requested"
-                          ? "green"
-                          : "red",
+                      width:
+                        item.activity_status === "change requested" ||
+                        item.activity_status === "Awaiting feedback"
+                          ? "auto"
+                          : item.activity_status === "ongoing"
+                          ? "80px"
+                          : "100px",
                     }}
                   >
-                    {item.activity_status}
-                  </p>
+                    <p
+                      className="mb-2"
+                      style={{
+                        color:
+                          item.activity_status !== "change requested"
+                            ? "green"
+                            : "red",
+                      }}
+                    >
+                      {(item.activity_status )}
+                    </p>
                   </div>
                   <p>Due {item.date}</p>
 
@@ -391,48 +427,55 @@ const Milestones = (props) => {
                    delete
           </button>*/}
               </div>
-              {user.role === 'HOMEBUILDER' &&
+              {user.role === "HOMEBUILDER" && (
                 <div className="btns-div d-sm-flex mt-3">
-                {item.activity_status !== "Awaiting feedback" || item.activity_status === 'completed' && (
-                  <button
-                    className="btn-green-color"
-                    href="#"
-                    onClick={() => submit(item)}
-                  >
-                    Submit
-                  </button>
-                )}
-                {item.activity_status === "Awaiting feedback" || item.activity_status === 'completed' && (
-                  <button className="btn-gray-color"  href="#">Submit</button>
-                )}
-              </div>
-
-              }
-              {user.role === 'HOMEOWNER' &&
+                  {item.activity_status !== "Awaiting feedback" &&
+                    item.activity_status !== "completed" && (
+                      <button
+                        className="btn-green-color"
+                        href="#"
+                        onClick={() => submit(item)}
+                      >
+                        Submit
+                      </button>
+                    )}
+                  {item.activity_status === "Awaiting feedback" && (
+                    <button className="btn-gray-color" href="#">
+                      Submit
+                    </button>
+                  )}
+                  {item.activity_status === "completed" && (
+                    <button className="btn-gray-color" href="#">
+                      Submit
+                    </button>
+                  )}
+                </div>
+              )}
+              {user.role === "HOMEOWNER" &&
+                item.activity_status !== "completed" && (
                   <div className="btns-div d-sm-flex mt-3">
-                 
                     <button
                       className="btn-light-color"
                       href="#"
-                      onClick={() => aceptar(item)}
-                      disabled={item.activity_status === "completed" ? true: false}
+                      onClick={() => toAccept(item)}
+                      disabled={
+                        item.activity_status === "completed" ? true : false
+                      }
                     >
-                      Aceptar
+                      Accept
                     </button>
                     <button
                       className="btn-green-color"
                       href="#"
                       onClick={() => changes(item)}
-                      disabled={item.activity_status === "completed" ? true: false}
-
+                      disabled={
+                        item.activity_status === "completed" ? true : false
+                      }
                     >
                       Request Change
                     </button>
-                  
-                  
-                </div>
-
-              }
+                  </div>
+                )}
             </div>
           ))}
       </div>
