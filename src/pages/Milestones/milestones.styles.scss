@@ -197,13 +197,16 @@ hr {
     border-radius: 50px;
   }
 
-  .feed-status {
-    background-color: #c8fbce;
-    color: #2d6459;
-    height: fit-content;
-    padding: 0.5rem 1rem;
-    font-weight: 500;
+  #status-container{
+    border: 1px solid rgb(134, 133, 133);
+    border-radius: 40px;
+    height: 25px;
+    
+    text-align: center;
+    width: 160px ;
   }
+
+  
 
   .btns-div {
     a,
@@ -231,7 +234,8 @@ hr {
       color: white;
     }
     .btn-gray-color {
-      color: rgb(65, 65, 65);
+      background-color: #e1e4e1;
+      color: rgb(109, 109, 109);
     }
   }
 }
@@ -262,7 +266,7 @@ hr {
 
 @media (max-width: 576px) {
   .btns-div {
-    a {
+    a,button {
       display: block;
       width: 100% !important;
     }

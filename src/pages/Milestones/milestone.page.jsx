@@ -11,6 +11,8 @@ import { Link, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Popup from "reactjs-popup";
+import Swal from 'sweetalert2'
+
 
 const Milestones = (props) => {
   const [feeds, setFeeds] = React.useState([]);
@@ -61,71 +63,107 @@ const Milestones = (props) => {
   }
 
   const aceptar = (item) =>{
-    axios
-    .get("/api/activity/decline/" + item.activity_id, {
-      headers: { Authorization: `Bearer ${props.token}` },
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Accept it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+        .get("/api/activity/approve/" + item.activity_id, {
+          headers: { Authorization: `Bearer ${props.token}` },
+        })
+        .then((res) => {
+          toast.success(item.activity_name + " " + "has been accepted", {
+            position: "bottom-right",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          item.activity_status='completed'
+        })
+        .catch((err) => {
+          console.log(err.response);
+          toast.error(err.response.data.detail, {
+            position: "bottom-right",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        });
+      }
     })
-    .then((res) => {
-      toast.success(item.activity_name + " " + "has been accepted", {
-        position: "bottom-right",
-        autoClose: 2000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err.response);
-      toast.error(err.response.data.detail, {
-        position: "bottom-right",
-        autoClose: 2000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    });
+   
   }
 
   const changes=(item)=>{
-    axios
-    .get("/api/activity/decline/" + item.activity_id, {
-      headers: { Authorization: `Bearer ${props.token}` },
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#398d63',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Request changes!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+        .get("/api/activity/decline/" + item.activity_id, {
+          headers: { Authorization: `Bearer ${props.token}` },
+        })
+        .then((res) => {
+          toast.warning(item.activity_name + " " + "request changes", {
+            position: "bottom-right",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err.response);
+          toast.error(err.response.data.detail, {
+            position: "bottom-right",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        });
+      }
     })
-    .then((res) => {
-      toast.warning(item.activity_name + " " + "request changes", {
-        position: "bottom-right",
-        autoClose: 2000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err.response);
-      toast.error(err.response.data.detail, {
-        position: "bottom-right",
-        autoClose: 2000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    });
+   
   }
   
   
 
   const submit = (item) => {
-    axios
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#398d63',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, send it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
       .get("/api/activity/submit/" + item.activity_id, {
         headers: { Authorization: `Bearer ${props.token}` },
       })
@@ -139,7 +177,7 @@ const Milestones = (props) => {
           draggable: true,
           progress: undefined,
         });
-        console.log(res);
+        item.activity_status='Awaiting feedback';
       })
       .catch((err) => {
         console.log(err.response);
@@ -153,6 +191,9 @@ const Milestones = (props) => {
           progress: undefined,
         });
       });
+      }
+    })
+    
   };
 
   useEffect(() => {
@@ -271,7 +312,10 @@ const Milestones = (props) => {
   return (
     <div className="dashboard-page">
       <div className="dashboard-page-heading custom-heading">
-        <Popup trigger={<button className="msgButton">Messages</button>} modal>
+      <span class="material-icons">chat</span>
+      <p>Messages</p>
+
+        {/*<Popup trigger={<button className="msgButton">Messages</button>} modal>
           
           <div className="chat-room">
               <div className="chat-header">
@@ -296,7 +340,7 @@ const Milestones = (props) => {
 
                   ))
 
-                    */}
+                    
               </div>
 
               
@@ -311,8 +355,8 @@ const Milestones = (props) => {
               </div>
           </div>
           
-        </Popup>
-        <hr />
+                  </Popup>*/}
+        
       </div>
 
       <div className="milestones-container custom-container">
@@ -323,8 +367,9 @@ const Milestones = (props) => {
               <div className="d-sm-flex card-inner-details justify-content-between">
                 <div>
                   <p className="fw-bold">
-                    {index + 1}) {item.activity_name}
+                    {index + 1}. {item.activity_name}
                   </p>
+                  <div id='status-container'>
                   <p
                     className="mb-2"
                     style={{
@@ -336,7 +381,8 @@ const Milestones = (props) => {
                   >
                     {item.activity_status}
                   </p>
-                  <p>{item.date}</p>
+                  </div>
+                  <p>Due {item.date}</p>
 
                   {/* <p>20</p> */}
                 </div>
@@ -347,7 +393,7 @@ const Milestones = (props) => {
               </div>
               {user.role === 'HOMEBUILDER' &&
                 <div className="btns-div d-sm-flex mt-3">
-                {item.activity_status !== "Awaiting feedback" && (
+                {item.activity_status !== "Awaiting feedback" || item.activity_status === 'completed' && (
                   <button
                     className="btn-green-color"
                     href="#"
@@ -356,8 +402,8 @@ const Milestones = (props) => {
                     Submit
                   </button>
                 )}
-                {item.activity_status === "Awaiting feedback" && (
-                  <button className="btn-gray-color" href="#"></button>
+                {item.activity_status === "Awaiting feedback" || item.activity_status === 'completed' && (
+                  <button className="btn-gray-color"  href="#">Submit</button>
                 )}
               </div>
 
@@ -369,6 +415,7 @@ const Milestones = (props) => {
                       className="btn-light-color"
                       href="#"
                       onClick={() => aceptar(item)}
+                      disabled={item.activity_status === "completed" ? true: false}
                     >
                       Aceptar
                     </button>
@@ -376,6 +423,8 @@ const Milestones = (props) => {
                       className="btn-green-color"
                       href="#"
                       onClick={() => changes(item)}
+                      disabled={item.activity_status === "completed" ? true: false}
+
                     >
                       Request Change
                     </button>

@@ -151,10 +151,13 @@ const Home = (props) => {
               </div>
               <p className="mt-3 text-14 text-black-50">{item.description}</p>
               <div className="btns-div d-sm-flex mt-3">
-                <a className="btn-light-color" href="">View Details</a>
+                <Link className="btn-light-color" to={'milestoneDetails/'+item.property_id+'/'+item.activity_id}>
+                  <a  href="">View Details</a>
+
+                </Link>
                 <Link to={"/milestones/"+item.property_id} className="btn-green-color">
 
-                <a className="btn-green-color" href="" onClick={()=>console.log(item)} >View Milestones</a>
+                <a  href="" onClick={()=>console.log(item)} >View Milestones</a>
                 </Link>
 
               </div>
