@@ -44,7 +44,7 @@ const Details = (props) => {
     const delay = ms => new Promise(res => setTimeout(res, ms));
     console.log(myHeight_description)
     if(myHeight_description>0){
-      for(let i=200;i>=0;i--){
+      for(let i=200;i>=0;i-=2.5){
 
         setMyHeight_description(i)
   
@@ -53,11 +53,11 @@ const Details = (props) => {
   
       }
     }else{
-      for(let i=0;i<=200;i++){
+      for(let i=0;i<=200;i+=2.5){
 
         setMyHeight_description(i)
   
-        await delay(5);
+        await delay(1);
   
   
       }
@@ -69,7 +69,7 @@ const Details = (props) => {
     const delay = ms => new Promise(res => setTimeout(res, ms));
     console.log(myHeight_description)
     if(myHeight_images>0){
-      for(let i=200;i>=0;i--){
+      for(let i=200;i>=0;i-=2.5){
 
         setMyHeight_images(i)
   
@@ -78,11 +78,11 @@ const Details = (props) => {
   
       }
     }else{
-      for(let i=0;i<=250;i++){
+      for(let i=0;i<=250;i+=2.5){
 
         setMyHeight_images(i)
   
-        await delay(5);
+        await delay(1);
   
   
       }
@@ -109,7 +109,8 @@ const Details = (props) => {
               </p>
             </div>
           </div>
-          <button onClick={()=>showDesc()}>description</button>
+          <button onClick={()=>showDesc()} style={{display:'flex'}}> <span >description</span> <span class='material-icons' style={{display:myHeight_description<200?'block':'none'}}>keyboard_arrow_down</span>
+          <span class='material-icons' style={{visibility:myHeight_description===200?'visible':'hidden'}}>keyboard_arrow_up</span></button>
         </div>
 
         <div className="feed-main-card-div card-toggle my-3 px-3 pt-3 pb-4" id="description" style={{height:myHeight_description}} >
@@ -117,7 +118,8 @@ const Details = (props) => {
 
         </div>
         <div className="feed-main-card-div card-toggle my-3 px-3 pt-3 pb-4" id='btnImages' style={{height:40}} >
-          <button onClick={()=>showImages()}>Images/Video</button>
+          <button onClick={()=>showImages()} style={{display:'flex'}}> <span>Images/Video</span><span class='material-icons' style={{display:myHeight_images<250?'block':'none'}}>keyboard_arrow_down</span>
+          <span class='material-icons' style={{visibility:myHeight_images===250?'visible':'hidden'}}>keyboard_arrow_up</span></button>
        
 
         </div>
