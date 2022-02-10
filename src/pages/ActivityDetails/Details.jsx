@@ -13,6 +13,8 @@ const Details = (props) => {
   const [showDescription, setShowDescription] = useState('hidden');
   const [myHeight_description, setMyHeight_description]=useState(0)
   const [myHeight_images, setMyHeight_images]=useState(0)
+  const [myHeight_doc, setMyHeight_doc]=useState(0)
+
 
   useEffect(() => {
     const activity_id = props.match.params.activity_id;
@@ -56,6 +58,30 @@ const Details = (props) => {
       for(let i=0;i<=200;i+=2.5){
 
         setMyHeight_description(i)
+  
+        await delay(1);
+  
+  
+      }
+    }
+    
+  }
+  const showDoc=async()=>{
+    const delay = ms => new Promise(res => setTimeout(res, ms));
+    console.log(myHeight_doc)
+    if(myHeight_doc>0){
+      for(let i=200;i>=0;i-=2.5){
+
+        setMyHeight_doc(i)
+  
+        await delay(1);
+  
+  
+      }
+    }else{
+      for(let i=0;i<=200;i+=2.5){
+
+        setMyHeight_doc(i)
   
         await delay(1);
   
@@ -124,9 +150,17 @@ const Details = (props) => {
 
         </div>
         <div className="feed-main-card-div card-toggle my-3 px-3 pt-3 pb-4" id='images'  style={{height:myHeight_images}} >
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla, voluptatem dolore temporibus quia accusantium eveniet, consequuntur repellendus adipisci accusamus autem reprehenderit vero dolores voluptatibus et, sit veniam animi explicabo ea!
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt rerum, beatae nisi quas, atque a excepturi quidem cumque repudiandae eos ratione nihil voluptatum neque debitis dolor laboriosam quia ad! Perferendis!
+        
+
+        </div>
+        <div className="feed-main-card-div card-toggle my-3 px-3 pt-3 pb-4" id='btnDoc' style={{height:40}} >
+          <button onClick={()=>showDoc()} style={{display:'flex'}}> <span>Pdf/Doc/Svg</span><span class='material-icons' style={{display:myHeight_images<250?'block':'none'}}>keyboard_arrow_down</span>
+          <span class='material-icons' style={{visibility:myHeight_doc===250?'visible':'hidden'}}>keyboard_arrow_up</span></button>
        
+
+        </div>
+        <div className="feed-main-card-div card-toggle my-3 px-3 pt-3 pb-4" id='doc'  style={{height:myHeight_doc}} >
+        
 
         </div>
       
