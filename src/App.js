@@ -24,6 +24,9 @@ import MobileExpand from "./components/mobile-expand-bar/mobile-expand-bar";
 import PaymentCancel from "./pages/PaymentCancel/PaymentCancel";
 import PaymentSuccess from "./pages/PaymentSuccess/PaymentSuccess";
 import ResetPassword from "./pages/ResetPassword/reset-password.component";
+import milestonePage from "./pages/Milestones/milestone.page";
+import Details from "./pages/ActivityDetails/Details";
+
 class App extends Component {
 
     state = {}
@@ -57,12 +60,14 @@ class App extends Component {
                     <Route exact path="/reset-password" component={ResetPassword} />
 
                     <Dashboard>
+
                         <Route exact path='/' component={Home} />
                         <Route exact path='/home' component={Home} />
                         <Route exact path="/setting" component={Setting} />
                         <Route exact path="/crew" component={Crew} />
                         <Route exact path="/messages" component={Messages} />
                         <Route path="/activity" component={Activity} />
+                        
                         <Route path='/property-activities/:property_id' component={Home} />
                         <Route exact path="/messages/add" component={AddMessage} />
                         <Route exact path="/property" component={Property} />
@@ -71,6 +76,10 @@ class App extends Component {
                         <Route exact path="/notification" component={notification}/>
                         <Route exact path='/payment-success' component={PaymentSuccess} />
                         <Route exact path='/payment-cancel' component={PaymentCancel} />
+                        <Route exact path="/milestones/:id" component={milestonePage} />
+                        <Route exact path="/milestoneDetails/:property_id/:activity_id" component={Details} />
+
+
                         <Redirect to='/' />
                     </Dashboard>
 

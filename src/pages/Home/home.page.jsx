@@ -8,10 +8,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchActivities } from "../../redux/actions/activityAction";
 import { connect } from "react-redux";
 import axios from "../../axios"
+import { Link } from "react-router-dom";
+
 
 const Home = (props) => {
   const [feeds, setFeeds] = React.useState([]);
-
+  const [filter, setFilter] = React.useState('today')
+  let activities_arrr = [];
   function convertDate(date) {
     return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
   }
@@ -25,12 +28,14 @@ const Home = (props) => {
   useEffect(() => {
     const property_id = props.match.params.property_id;
     //  ?props.history.push('/')
+    console.log(filter)
     if (props.token) {
       axios.get("api/property/", {
         headers: { Authorization: `Bearer ${props.token}` },
       }).then(res => {
+        console.log(res.data)
         let properties = res.data;
-        let activities_arrr = [];
+       
         let current_date = new Date();
 
         for (let i = 0; i < properties.length; i++) {
@@ -40,11 +45,12 @@ const Home = (props) => {
 
             for (let j = 0; j < activities.length; j++) {
               let from_date = new Date(activities[j]._from);
-
+               
               const diffTime = Math.abs(timeSetting(from_date) - timeSetting(current_date));
               const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
               if (diffDays > 0 && (from_date > current_date || convertDate(current_date) === convertDate(from_date))) {
+                console.log(activities[j].milestone_name, diffDays)
 
                 if (diffDays === 1 ) {
                   activities_arrr.push({
@@ -92,18 +98,41 @@ const Home = (props) => {
           }
         }
 
-        setFeeds(activities_arrr)
+        if(filter==='today'){
+          setFeeds(activities_arrr.filter(i=> i.view_text==='Today'))
+
+        }else{
+          setFeeds(activities_arrr.sort((a, b) => {
+            if (a.date > b.date) {
+              return 1
+            } else if (a.date < b.date) {
+              return -1
+            }
+            return 0
+          }))
+
+        }
 
 
-      }).catch(err => console.log(err))
+      }).catch(err => console.log(err.response))
     }
-  }, [props.token]);
+  }, [props.token, filter]);
 
   return (
     <div className="dashboard-page">
       <div className="dashboard-page-heading custom-heading">
-        <h2 className="text-center w-100">Feed</h2>
+        <label htmlFor="filters">Select View:</label>
+        <select
+          name="filters"
+          className="select-input text-center"
+          onChange={(e) => setFilter(e.target.value)}
+        >
+          <option value="today">today</option>
+
+          <option value="all">all</option>
+        </select>
       </div>
+     
       <div className="home-container custom-container">
         {feeds.length > 0 && (
           feeds.map((item, index) => (
@@ -122,8 +151,15 @@ const Home = (props) => {
               </div>
               <p className="mt-3 text-14 text-black-50">{item.description}</p>
               <div className="btns-div d-sm-flex mt-3">
-                <a className="btn-light-color" href="">View Details</a>
-                <a className="btn-green-color" href="">View Milestones</a>
+                <Link className="btn-light-color" to={'milestoneDetails/'+item.property_id+'/'+item.activity_id}>
+                  <a  href="">View Details</a>
+
+                </Link>
+                <Link to={"/milestones/"+item.property_id} className="btn-green-color">
+
+                <a  href="" onClick={()=>console.log(item)} >View Milestones</a>
+                </Link>
+
               </div>
             </div>
           ))

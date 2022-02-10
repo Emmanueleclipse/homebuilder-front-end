@@ -1,0 +1,301 @@
+.milestones-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 4rem;
+}
+
+@media (max-width: 768px) {
+  .milestones-container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
+.milestones-container .milestones-search-control {
+  margin-right: 5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media (max-width: 768px) {
+  .milestones-container .milestones-search-control {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 468px) {
+  .milestones-container .milestones-search-control {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin-bottom: 1rem;
+  }
+}
+
+.milestones-container .milestones-search-control button {
+  margin-left: 0.4rem;
+  background-color: #398d63;
+  padding: 0.6rem 1rem;
+  border: none;
+  color: white;
+  font-family: inherit;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.milestones-container .milestones-search-control button:hover {
+  background-color: #2d7752;
+}
+
+.milestones-container .milestones-content {
+  width: 50%;
+}
+
+@media (max-width: 768px) {
+  .milestones-container .milestones-content {
+    width: 80%;
+  }
+}
+
+@media (max-width: 468px) {
+  .milestones-container .milestones-content {
+    width: 95%;
+  }
+}
+
+.milestones-container .milestones-head-card {
+  background-color: #f1f9ff;
+  padding: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.milestones-container .milestones-head-card-left div {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #398d63;
+}
+
+.milestones-container .milestones-head-card-right {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  text-align: center;
+}
+
+.milestones-container .milestones-head-card-left span {
+  font-size: 40px;
+}
+
+.milestones-container .milestones-card {
+  background-color: white;
+  padding: 1rem;
+  margin: 0.5rem 0;
+}
+
+.milestones-container .milestones-card .milestones-card-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media (max-width: 468px) {
+  .milestones-container .milestones-card .milestones-card-header {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.milestones-container .milestones-card .milestones-card-header .milestones-card-left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@media (max-width: 468px) {
+  .milestones-container .milestones-card .milestones-card-header .milestones-card-left {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.milestones-container .milestones-card .milestones-card-header .milestones-card-title {
+  font-weight: 500;
+}
+
+.milestones-container .milestones-card .milestones-card-header .milestones-card-img {
+  margin-right: 15px;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  background-color: #e2e2e2;
+  overflow: hidden;
+}
+
+.milestones-container .milestones-card .milestones-card-header .milestones-card-img img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.milestones-container .milestones-card-detail {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.milestones-container .milestones-card-detail .milestones-card-img {
+  height: 170px;
+  width: 50%;
+  background-color: gray;
+  margin: 2rem 0.5rem;
+}
+
+.milestones-container .milestones-card-detail .milestones-card-img img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.text-14 {
+  font-size: 14px;
+}
+
+.custom-heading {
+  border-top: 6px solid #696c68;
+}
+
+.custom-heading h2 {
+  color: #30332f;
+}
+
+.feed-main-card-div {
+  width: 700px;
+  background-color: white;
+  border-radius: 6px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+          box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.feed-main-card-div p {
+  margin-bottom: 0;
+}
+
+.feed-main-card-div .feed-status {
+  background-color: #c8fbce;
+  color: #2d6459;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: .5rem 1rem;
+  font-weight: 500;
+}
+
+.feed-main-card-div .btns-div a {
+  width: 50%;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.feed-main-card-div .btns-div .btn-light-color {
+  background-color: #e1e4e1;
+}
+
+.feed-main-card-div .btns-div .btn-green-color {
+  background-color: #2a804c;
+  
+}
+
+.feed-main-card-div .btns-div .btn-light-color {
+  margin-right: 1rem;
+}
+
+.feed-main-card-div .btns-div .btn-green-color {
+  color: white;
+}
+
+@media (max-width: 1200px) {
+  .feed-main-card-div {
+    width: 100%;
+    margin: 0 2rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .feed-main-card-div {
+    width: 550px;
+    margin: 0 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .feed-main-card-div {
+    width: 100%;
+    margin: 0 2rem;
+  }
+  .custom-container {
+    margin: 0 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .btns-div a {
+    display: block;
+    width: 100% !important;
+  }
+  .btns-div .btn-light-color {
+    margin-bottom: 1rem;
+  }
+  .card-inner-details {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .feed-status {
+    font-size: 14px;
+  }
+}
+/*# sourceMappingURL=milestones.styles.css.map */
