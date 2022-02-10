@@ -157,7 +157,7 @@ const Home = (props) => {
                 </Link>
                 <Link to={"/milestones/"+item.property_id} className="btn-green-color">
 
-                <a  href="" onClick={()=>console.log(item)} >View Milestones</a>
+                 <a  href="" onClick={()=>console.log(item)} >View Milestones</a>
                 </Link>
 
               </div>

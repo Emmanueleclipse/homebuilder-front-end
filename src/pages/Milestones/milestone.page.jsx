@@ -361,7 +361,7 @@ const Milestones = (props) => {
          
 
       <div className="dashboard-page-heading custom-heading">
-      <Link to={"/messages"} style={{backgroundColor:'none',color:'#398d63',border:'none',display:'flex',flexDirection:'column',alignItems:'center'}}>
+      <Link to={"/messages/"+id} style={{backgroundColor:'none',color:'#398d63',border:'none',display:'flex',flexDirection:'column',alignItems:'center'}}>
       <span class="material-icons">chat</span><p>Messages</p>
       
       </Link>

@@ -1,21 +1,26 @@
 import React, {useRef, useEffect, useState } from "react";
 import Button from "../../components/button/button.component";
 import Person2 from "../../assets/images/person2.jpg";
-
-import { NavLink } from "react-router-dom";
+import { fetchActivities } from "../../redux/actions/activityAction";
+import { connect } from "react-redux";
+import { NavLink , useParams} from "react-router-dom";
 import "./messages.styles.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMessages } from "../../redux/actions/messageActions";
+import axios from "../../axios";
+
 const shortid = require('shortid');
 
-const Messages = ({ history }) => {
+const Messages = (props) => {
   const dispatch = useDispatch();
   const [messages, setMessages] = React.useState([]);
   const [message, setMessage] = React.useState("");
+  const [property, setProperty] = React.useState({});
   var msgRef = useRef(null);
   const [shouldScroll, setShouldScroll] = React.useState(false)
   const { token, error, loading } = useSelector((state) => state.authReducer);
   const { user } = useSelector((state) => state.authReducer);
+  const { id } = useParams();
 
  
   const sendMsg = (event) => {
@@ -25,16 +30,32 @@ const Messages = ({ history }) => {
 
     let senders = ["me", "other"];
     let from = senders[Math.floor(Math.random() * 2 + 0)];
-    let newMsg = {
-      id: shortid.generate(),
-      from: from,
-      to: "dadawd",
-      text: message,
-    };
+    if(user.role==='HOMEBUILDER'){
+      let newMsg = {
+        id: shortid.generate(),
+        author: user.pk,
+        receiver:property.homeowner,
+        text: message,
+        roomId:id
+      };
+      messages.push(newMsg);
 
-    messages.push(newMsg);
+    }else{
+      let newMsg = {
+        id: shortid.generate(),
+        author: user.pk,
+        receiver:property.homebuilder,
+        text: message,
+        roomId:id
+      };
+      messages.push(newMsg);
+
+    }
+
+    
     setMessages(messages);
-    setMessage("");
+    
+    setMessage('');
     msgRef.current.scrollTop = msgRef.current.scrollHeight+2000;
 
     event.target.value = "";
@@ -49,6 +70,17 @@ const Messages = ({ history }) => {
   }
 
   useEffect(() => {
+    if (props.token) {
+      axios
+        .get("api/property/" + id, {
+          headers: { Authorization: `Bearer ${props.token}` },
+        })
+        .then((res) => {
+          setProperty(res.data)
+        }).catch((err)=>{})
+
+
+    }
   
     dispatch(fetchMessages({ token: token }));
   }, [dispatch, message]);
@@ -58,7 +90,7 @@ const Messages = ({ history }) => {
   return (
     <div className="dashboard-page">
       <div className="dashboard-page-heading">
-        <h2>Messages</h2>
+        <h2>Messages - {property.name}</h2>
       </div>
       <div className="chat-room">
         <div className="chat-header">
@@ -87,6 +119,7 @@ const Messages = ({ history }) => {
               autofocus
               onChange={(e) => setMessage(e.target.value)}
               className="chat-input"
+              value={message}
             />
             <button className="send-btn">sent</button>
           </form>
@@ -168,4 +201,18 @@ const Messages = ({ history }) => {
   );
 };
 
-export default Messages;
+const mapStateToProps = state => {
+  return {
+    'token': state.authReducer.token,
+    'activities': state.activityReducer.activities,
+    'activityError': state.activityReducer.error,
+    'activityLoading': state.activityReducer.loading
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    'fetchAllActivities': (token, property_id) => dispatch(fetchActivities({ token, property_id }))
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Messages);
