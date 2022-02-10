@@ -418,7 +418,7 @@ const Milestones = (props) => {
                             : "red",
                       }}
                     >
-                      {(item.activity_status='ongoing' )}
+                      {(item.activity_status )}
                     </p>
                   </div>
                   <p>Due {item.date}</p>
