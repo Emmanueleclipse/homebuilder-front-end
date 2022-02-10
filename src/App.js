@@ -7,6 +7,7 @@ import Register from "./pages/Signup/signup.page";
 import Invite from "./pages/Invite/invite.component";
 import Billing from "./pages/Billing/billing.page";
 import Payment from "./pages/Payment/payment.page";
+import notification from"./pages/notification/notification.pages"
 import { connect } from "react-redux";
 import { authCheckState } from "./redux/actions/authAction";
 import { withRouter, Redirect } from 'react-router-dom';
@@ -72,6 +73,7 @@ class App extends Component {
                         <Route exact path="/property" component={Property} />
                         <Route exact path="/property/add" component={CreateProperty} />
                         <Route exact path="/more" component={MobileExpand} />
+                        <Route exact path="/notification" component={notification}/>
                         <Route exact path='/payment-success' component={PaymentSuccess} />
                         <Route exact path='/payment-cancel' component={PaymentCancel} />
                         <Route exact path="/milestones/:id" component={milestonePage} />

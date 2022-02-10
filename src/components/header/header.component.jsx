@@ -23,9 +23,11 @@ const Header = () => {
             <span class="material-icons">chat</span>
           </div>
         </Link>
+        <Link to="notification">
         <div className="notification-icon">
           <span class="material-icons">notifications</span>
         </div>
+        </Link>
         <div
           className="header-user-profile"
           onClick={() => setDropActive((active) => !active)}
