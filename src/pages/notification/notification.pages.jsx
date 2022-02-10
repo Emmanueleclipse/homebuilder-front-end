@@ -5,8 +5,7 @@ const notification=()=> {
     <div className="dashboard-page">
          <div className="dashboard-page-heading">
         <h2>Notification</h2>
-      </div>
-       
+      </div>   
     </div>
   )
 }
