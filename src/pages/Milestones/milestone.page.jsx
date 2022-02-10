@@ -10,9 +10,8 @@ import axios from "../../axios";
 import { Link, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Popup from "reactjs-popup";
 import Swal from "sweetalert2";
-import { POPUP_DELETE } from "../../redux/actions/crewAction";
+import Messages from "../../components/messages/messages";
 
 
 const Milestones = (props) => {
@@ -60,14 +59,7 @@ const Milestones = (props) => {
   };
 
   const toAccept = (item) => {
-    item.activity_status = "completed";
-    dispatch(POPUP_DELETE({
-      payloadToDelete: {
-        Id: property.pk,
-        action: "DeleteProperty",
-        data: property
-      }
-    }))
+    
 
     Swal.fire({
       title: "Are you sure?",
@@ -75,6 +67,14 @@ const Milestones = (props) => {
       customClass:{
         confirmButton:'swal-btn-confirm swal2-my-btn',
         cancelButton:'swal2-cancel swal2-my-btn'
+      },
+      showClass: {
+        backdrop: 'swal2-noanimation', // disable backdrop animation
+        popup: '',                     // disable popup animation
+        icon: ''                       // disable icon animation
+      },
+      hideClass: {
+        popup: '',                     // disable popup fade-out animation
       },
       buttonsStyling:false,
       showCancelButton: true,
@@ -130,6 +130,14 @@ const Milestones = (props) => {
       customClass:{
         confirmButton:'swal-btn-confirm swal2-my-btn',
         cancelButton:'swal2-cancel swal2-my-btn'
+      },
+      showClass: {
+        backdrop: 'swal2-noanimation', // disable backdrop animation
+        popup: '',                     // disable popup animation
+        icon: ''                       // disable icon animation
+      },
+      hideClass: {
+        popup: '',                     // disable popup fade-out animation
       },
       buttonsStyling:false,
       title: "Are you sure?",
@@ -189,6 +197,14 @@ const Milestones = (props) => {
       confirmButton:'swal-btn-confirm swal2-my-btn',
       cancelButton:'swal2-cancel swal2-my-btn'
     },
+    showClass: {
+      backdrop: 'swal2-noanimation', // disable backdrop animation
+      popup: '',                     // disable popup animation
+      icon: ''                       // disable icon animation
+    },
+    hideClass: {
+      popup: '',                     // disable popup fade-out animation
+    },
     buttonsStyling:false,
 
     title: "Are you sure?",
@@ -206,7 +222,7 @@ const Milestones = (props) => {
             headers: { Authorization: `Bearer ${props.token}` },
           })
           .then((res) => {
-            toast.success(item.activity_name + " " + "sent to review", {
+            toast.success(item.activity_name + " " + "was accepted", {
               position: "bottom-right",
               autoClose: 2000,
               hideProgressBar: true,
@@ -361,50 +377,9 @@ const Milestones = (props) => {
          
 
       <div className="dashboard-page-heading custom-heading">
-        <span class="material-icons">chat</span>
-        <p>Messages</p>
-
-        {/*<Popup trigger={<button className="msgButton">Messages</button>} modal>
-          
-          <div className="chat-room">
-              <div className="chat-header">
-                <h5>{property.name}</h5>
-              </div>
-              <div className="chat-box">
-              
-                {/*messages !== undefined &&
-                  messages.map(msg=>(
-                    
-                    <>
-                      {msg.from === 'me' &&
-                        <div className="msg-to">{msg.text}</div>  
-
-                      }
-                      {msg.from !== 'me' &&
-                        <div className="msg-from">{msg.text}</div>
-
-                      }
-                    </>
-                    
-
-                  ))
-
-                    
-              </div>
-
-              
-
-              
-              <div className="chat-footer">
-                
-                <form action="" onSubmit={(event)=>sendMsg(event)}>
-                  <input type="text" value={message} placeholder='Say something nice' autofocus onChange={(e)=> setMessage(e.target.value)} className="chat-input" />
-                  <button className='send-btn' >sent</button>
-                </form>
-              </div>
-          </div>
-          
-                  </Popup>*/}
+       
+        <Messages/>
+       
       </div>
 
       <div className="milestones-container custom-container">
@@ -443,7 +418,7 @@ const Milestones = (props) => {
                             : "red",
                       }}
                     >
-                      {(item.activity_status )}
+                      {(item.activity_status='ongoing' )}
                     </p>
                   </div>
                   <p>Due {item.date}</p>
