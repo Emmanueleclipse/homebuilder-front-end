@@ -40,23 +40,7 @@ const Milestones = (props) => {
     setMessage(event.target.value);
   }
 
-  const sendMsg = (event) => {
-    console.log(event);
-    event.preventDefault();
-    let senders = ["me", "other"];
-    let from = senders[Math.floor(Math.random() * 2 + 0)];
-    let newMsg = {
-      id: "1",
-      from: from,
-      to: "dadawd",
-      text: message,
-    };
-
-    messages.push(newMsg);
-    setMessages(messages);
-    setMessage("");
-    console.log(messages);
-  };
+  
 
   const toAccept = (item) => {
     
@@ -377,8 +361,11 @@ const Milestones = (props) => {
          
 
       <div className="dashboard-page-heading custom-heading">
+      <Link to={"/messages"} style={{backgroundColor:'none',color:'#398d63',border:'none',display:'flex',flexDirection:'column',alignItems:'center'}}>
+      <span class="material-icons">chat</span><p>Messages</p>
+      
+      </Link>
        
-        <Messages/>
        
       </div>
 
@@ -420,6 +407,7 @@ const Milestones = (props) => {
                     >
                       {(item.activity_status )}
                     </p>
+                    <br />
                   </div>
                   <p>Due {item.date}</p>
 

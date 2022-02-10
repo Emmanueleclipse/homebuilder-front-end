@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useRef, useEffect, useState } from "react";
 import Button from "../../components/button/button.component";
 import Person2 from "../../assets/images/person2.jpg";
 
@@ -6,19 +6,52 @@ import { NavLink } from "react-router-dom";
 import "./messages.styles.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMessages } from "../../redux/actions/messageActions";
+const shortid = require('shortid');
 
 const Messages = ({ history }) => {
   const dispatch = useDispatch();
+  const [messages, setMessages] = React.useState([]);
+  const [message, setMessage] = React.useState("");
+  var msgRef = useRef(null);
+  const [shouldScroll, setShouldScroll] = React.useState(false)
   const { token, error, loading } = useSelector((state) => state.authReducer);
-  const {
-    messages,
-    error: errorMessage,
-    loading: messagesLoading,
-  } = useSelector((state) => state.messageReducer);
+  const { user } = useSelector((state) => state.authReducer);
+
+ 
+  const sendMsg = (event) => {
+    console.log(user)
+    event.preventDefault();
+    setShouldScroll(msgRef.current.scrollTop + msgRef.current.clientHeight === msgRef.current.scrollHeight);
+
+    let senders = ["me", "other"];
+    let from = senders[Math.floor(Math.random() * 2 + 0)];
+    let newMsg = {
+      id: shortid.generate(),
+      from: from,
+      to: "dadawd",
+      text: message,
+    };
+
+    messages.push(newMsg);
+    setMessages(messages);
+    setMessage("");
+    msgRef.current.scrollTop = msgRef.current.scrollHeight+2000;
+
+    event.target.value = "";
+    console.log(msgRef.current.scrollHeight);
+  };
+
+  const needScroll=()=>{
+    if (!shouldScroll) {
+      msgRef.current.scrollTop = msgRef.current.scrollHeight;
+
+    }
+  }
 
   useEffect(() => {
+  
     dispatch(fetchMessages({ token: token }));
-  }, [dispatch]);
+  }, [dispatch, message]);
   const [page, setPage] = useState(1);
   const skip = (page - 1) * 4;
   const pages = Math.ceil(messages.length / 4);
@@ -27,7 +60,39 @@ const Messages = ({ history }) => {
       <div className="dashboard-page-heading">
         <h2>Messages</h2>
       </div>
-      <div className="messages-container">
+      <div className="chat-room">
+        <div className="chat-header">
+          <h5>kkiki</h5>
+        </div>
+        <div className="chat-box" ref={msgRef}>
+         
+        {messages !== undefined &&
+            messages.map((msg) => (
+              <>
+              
+                {msg.from === "me" && <div  className="msg-to"><p>{msg.text}</p></div>}
+                {msg.from !== "me" && (
+                  <div className="msg-from"><p>{msg.text}</p></div>
+                )}
+              </>
+            ))}
+            
+        </div>
+
+        <div className="chat-footer">
+          <form action="" onSubmit={(event) => sendMsg(event)}>
+            <input
+              type="text"
+              placeholder="Say something nice"
+              autofocus
+              onChange={(e) => setMessage(e.target.value)}
+              className="chat-input"
+            />
+            <button className="send-btn">sent</button>
+          </form>
+        </div>
+      </div>
+      {/*<div className="messages-container">
         <div className="messages-header">
           <NavLink to="/messages/add">
             <Button type="main">Add Message</Button>
@@ -98,7 +163,7 @@ const Messages = ({ history }) => {
             </nav>
           </div>
         </div>
-      </div>
+      </div>*/}
     </div>
   );
 };
