@@ -178,6 +178,46 @@ hr {
   }
 }
 
+.swal-btn-confirm {
+  background-color: #398d63;
+  color: white ;
+  margin-right: 2px;
+  
+  }
+
+.swal2-cancel{
+  
+  color: black;
+}
+
+.swal2-cancel:hover{
+  border: 0.5px solid green;
+  color: black
+}
+
+
+
+.swal2-my-btn{
+  padding: 12px 65px;
+  background-color: none;
+  
+  border-radius: 25px;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s ease-in-out;
+  @media (max-width: 768px) {
+    padding: 10px 48px;
+  }
+  &:hover {
+    filter: brightness(0.8);
+    color: white;
+  }
+
+}
+
 .feed-main-card-div {
   width: 700px;
   background-color: white;
@@ -194,7 +234,7 @@ hr {
     width: 100px;
     border-radius: 50px;
   }
-
+  
   #status-container{
     border: 1px solid rgb(134, 133, 133);
     border-radius: 40px;

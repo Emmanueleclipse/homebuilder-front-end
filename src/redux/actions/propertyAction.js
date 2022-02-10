@@ -78,7 +78,7 @@ export const updateProperty =
 
 export const deleteProperty =
   ({ property, token, Id }) => {
-
+    
     return dispatch => {
 
       dispatch({ type: propertyTypes.DELETE_PROPERTY_START });

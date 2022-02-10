@@ -12,6 +12,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Popup from "reactjs-popup";
 import Swal from "sweetalert2";
+import { POPUP_DELETE } from "../../redux/actions/crewAction";
+
 
 const Milestones = (props) => {
   const [feeds, setFeeds] = React.useState([]);
@@ -21,6 +23,7 @@ const Milestones = (props) => {
   const [message, setMessage] = React.useState("");
   const [messages, setMessages] = React.useState([]);
   const { user } = useSelector((state) => state.authReducer);
+  const dispatch = useDispatch();
 
   let activities_arrr = [];
   function convertDate(date) {
@@ -58,11 +61,22 @@ const Milestones = (props) => {
 
   const toAccept = (item) => {
     item.activity_status = "completed";
+    dispatch(POPUP_DELETE({
+      payloadToDelete: {
+        Id: property.pk,
+        action: "DeleteProperty",
+        data: property
+      }
+    }))
 
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
-      
+      customClass:{
+        confirmButton:'swal-btn-confirm swal2-my-btn',
+        cancelButton:'swal2-cancel swal2-my-btn'
+      },
+      buttonsStyling:false,
       showCancelButton: true,
       confirmButtonColor: "#398d63",
       cancelButtonColor: "#FFFFFF      ",
@@ -113,12 +127,16 @@ const Milestones = (props) => {
 
   const changes = (item) => {
     Swal.fire({
+      customClass:{
+        confirmButton:'swal-btn-confirm swal2-my-btn',
+        cancelButton:'swal2-cancel swal2-my-btn'
+      },
+      buttonsStyling:false,
       title: "Are you sure?",
       text: "You won't be able to revert this!",
     
       showCancelButton: true,
-      confirmButtonColor: "#398d63",
-      cancelButtonColor: "#FFFFFF      ",
+     
       confirmButtonText: "Yes, Request changes!",
     }).then((result) => {
       if (result.isConfirmed) {
@@ -165,14 +183,22 @@ const Milestones = (props) => {
   };
 
   const submit = (item) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+   
+   Swal.fire({
+    customClass:{
+      confirmButton:'swal-btn-confirm swal2-my-btn',
+      cancelButton:'swal2-cancel swal2-my-btn'
+    },
+    buttonsStyling:false,
+
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+  
+    showCancelButton: true,
+    showConfirmButton:true,
+   
     
-      showCancelButton: true,
-      confirmButtonColor: "#398d63",
-      cancelButtonColor: "#FFFFFF      ",
-      confirmButtonText: "Yes, send it!",
+    confirmButtonText: "Yes, Submit it!",
     }).then((result) => {
       if (result.isConfirmed) {
         axios
@@ -332,6 +358,8 @@ const Milestones = (props) => {
 
   return (
     <div className="dashboard-page">
+         
+
       <div className="dashboard-page-heading custom-heading">
         <span class="material-icons">chat</span>
         <p>Messages</p>

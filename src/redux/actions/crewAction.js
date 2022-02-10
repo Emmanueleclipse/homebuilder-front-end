@@ -81,6 +81,7 @@ export const TOGGLE_POPUP_UPDATE = ({ payloadToUpdate }) => {
   }
 }
 export const POPUP_DELETE = ({ payloadToDelete }) => {
+  console.log('ds')
   return dispatch => {
     dispatch({ type: crewTypes.POPUP_DELETE, payloadToDelete: payloadToDelete });
   }
