@@ -63,12 +63,16 @@ console.log( anchorElUser)
         onClose={handleCloseUserMenu}
       >
       
-          <MenuItem onClick={handleCloseUserMenu}>
+          <MenuItem style={{width:50}}
+          onClick={handleCloseUserMenu}>
           <div
+             style={{display:"flex",flexDirection:"row"}}
            className="header-drop-down-item"
            onClick={handleLogout}
            >
-    <div className="header-drop-down-item-icon">
+    <div
+ 
+     className="header-drop-down-item-icon">
       <span class="material-icons">logout</span>
     </div>
     <div className="header-drop-down-item-label">Logout</div>
@@ -76,6 +80,7 @@ console.log( anchorElUser)
           </MenuItem>
        <MenuItem>
        <div
+       style={{display:"flex",flexDirection:"row"}}
         className="header-drop-down-item"
         onClick={() => history.push("/setting")}
       >

@@ -1,12 +1,10 @@
-import React, { useState } from "react";
-import HeaderDropDown from "../header-dropdown/header-drop-down.component";
+import React from "react"
 import Person from "../../assets/images/person.jpg";
 import { Link } from "react-router-dom";
 import ArrowMenu from "../arrow-menu/arrow.menu"
 import "./header.styles.scss";
 import { useSelector } from "react-redux";
 const Header = () => {
-  const [dropActive, setDropActive] = useState(false);
   const { user } = useSelector((state) => state.authReducer);
   return (
     <div className="header">
@@ -36,11 +34,10 @@ const Header = () => {
             <img src={Person} alt="" />
           </div>
           <div className="user-name">{user?.user?.name}</div>
-          <div>
+          <div >
             <ArrowMenu/>
           </div>
         </div>
-        {dropActive && <HeaderDropDown />}
       </div>
     </div>
   );
