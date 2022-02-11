@@ -1,11 +1,22 @@
+.arrow {
+  color: white;
+  -webkit-transition: all 300ms ease;
+  transition: all 300ms ease;
+}
+
+.arrow-up {
+  color: white;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  -webkit-transition: all 300ms ease;
+  transition: all 300ms ease;
+}
+
 .header-drop-down {
   position: absolute;
   background-color: white;
   color: black;
-  padding: 1rem 0;
-  top: 103%;
-  right: 1%;
-  width: 200px;
+  padding: .5rem 0;
 }
 
 .header-drop-down-item {
@@ -15,7 +26,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 1rem;
+  padding: .5rem;
   cursor: pointer;
 }
 
@@ -26,4 +37,4 @@
 .header-drop-down-item span {
   margin-right: 5px;
 }
-/*# sourceMappingURL=header-drop-down.styles.css.map */
+/*# sourceMappingURL=arrow.style.css.map */

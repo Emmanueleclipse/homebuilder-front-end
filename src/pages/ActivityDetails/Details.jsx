@@ -135,7 +135,7 @@ const Details = (props) => {
               </p>
             </div>
           </div>
-          <button onClick={()=>showDesc()} style={{display:'flex'}}> <span >description</span> <span class='material-icons' style={{display:myHeight_description<200?'block':'none'}}>keyboard_arrow_down</span>
+          <button onClick={()=>showDesc()} style={{display:'flex'}}> <span >Description</span> <span class='material-icons' style={{display:myHeight_description<200?'block':'none'}}>keyboard_arrow_down</span>
           <span class='material-icons' style={{visibility:myHeight_description===200?'visible':'hidden'}}>keyboard_arrow_up</span></button>
         </div>
 
@@ -154,7 +154,7 @@ const Details = (props) => {
 
         </div>
         <div className="feed-main-card-div card-toggle my-3 px-3 pt-3 pb-4" id='btnDoc' style={{height:40}} >
-          <button onClick={()=>showDoc()} style={{display:'flex'}}> <span>Pdf/Doc/Svg</span><span class='material-icons' style={{display:myHeight_images<250?'block':'none'}}>keyboard_arrow_down</span>
+          <button onClick={()=>showDoc()} style={{display:'flex'}}> <span>Pdf,Doc,Svg</span><span class='material-icons' style={{display:myHeight_images<250?'block':'none'}}>keyboard_arrow_down</span>
           <span class='material-icons' style={{visibility:myHeight_doc===250?'visible':'hidden'}}>keyboard_arrow_up</span></button>
        
 
