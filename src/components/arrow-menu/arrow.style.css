@@ -1,0 +1,14 @@
+.arrow {
+  color: white;
+  -webkit-transition: all 300ms ease;
+  transition: all 300ms ease;
+}
+
+.arrow-up {
+  color: white;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  -webkit-transition: all 300ms ease;
+  transition: all 300ms ease;
+}
+/*# sourceMappingURL=arrow.style.css.map */
