@@ -29,7 +29,7 @@ export const fetchProperties =
 
 export const createProperty =
   ({ property, token }) => {
-
+    console.log(property)
     return dispatch => {
       const config = {
         headers: { Authorization: `Bearer ${token}` },
@@ -78,7 +78,7 @@ export const updateProperty =
 
 export const deleteProperty =
   ({ property, token, Id }) => {
-
+    
     return dispatch => {
 
       dispatch({ type: propertyTypes.DELETE_PROPERTY_START });

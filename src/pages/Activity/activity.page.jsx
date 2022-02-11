@@ -16,7 +16,7 @@ const Activity = ({history }) => {
   const [_from, set_from] = useState("");
   const [_to, set_to] = useState("");
   const [file, set_file] = useState("");
-  const [status, set_status] = useState("pending");
+  const [status, set_status] = useState("ongoing");
   const [submitted, setSubmitted] = useState(false);
   const [popup, setpopup] = useState(false);
 
@@ -57,6 +57,7 @@ const Activity = ({history }) => {
     activity.append("_from", _from);
     activity.append("_to", _to);
     activity.append("image", file);
+    
     dispatch(createActivity({ activity, token: token }));
   };
   
@@ -113,6 +114,7 @@ const Activity = ({history }) => {
                   value={_from}
                   onChange={(e) => set_from(e.target.value)}
                   type="date"
+                  name='_from'
                 />
               </div>
               <div className="d-flex align-items-center">
@@ -122,6 +124,7 @@ const Activity = ({history }) => {
                   type="date"
                   value={_to}
                   onChange={(e) => set_to(e.target.value)}
+                  name="_to"
                 />
               </div>
             </div>
