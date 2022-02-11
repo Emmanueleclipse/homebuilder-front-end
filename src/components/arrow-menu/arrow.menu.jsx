@@ -30,7 +30,6 @@ const  ArrowMenu=()=> {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-console.log( anchorElUser)
   return (
    
     <Container className="arrow-container" maxWidth="xl">
@@ -80,7 +79,7 @@ console.log( anchorElUser)
           </MenuItem>
        <MenuItem>
        <div
-       style={{display:"flex",flexDirection:"row"}}
+    
         className="header-drop-down-item"
         onClick={() => history.push("/setting")}
       >

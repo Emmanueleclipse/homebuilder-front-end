@@ -6,6 +6,7 @@ import "./header.styles.scss";
 import { useSelector } from "react-redux";
 const Header = () => {
   const { user } = useSelector((state) => state.authReducer);
+
   return (
     <div className="header">
       <div className="header-left">
@@ -33,7 +34,7 @@ const Header = () => {
           <div className="user-avatar">
             <img src={Person} alt="" />
           </div>
-          <div className="user-name">{user?.user?.name}</div>
+          <div className="user-name">{user?.name}</div>
           <div >
             <ArrowMenu/>
           </div>
