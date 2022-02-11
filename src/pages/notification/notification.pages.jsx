@@ -9,5 +9,4 @@ const notification=()=> {
     </div>
   )
 }
-
 export default notification

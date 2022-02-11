@@ -109,6 +109,7 @@ const SideBar = () => {
   const handleLogout = () => {
     dispatch(logout());
   };
+  
   return (
     <div className="side-bar-container">
       {renderMenu(user?.role)}
