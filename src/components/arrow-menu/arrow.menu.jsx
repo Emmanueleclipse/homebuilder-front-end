@@ -12,6 +12,8 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/actions/authAction";
+import { useHistory } from "react-router-dom";
+
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const  ArrowMenu=()=> {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -20,7 +22,7 @@ const  ArrowMenu=()=> {
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
-
+  const history = useHistory();
   const handleLogout = () => {
   dispatch(logout());
   };
@@ -62,14 +64,27 @@ console.log( anchorElUser)
       >
       
           <MenuItem onClick={handleCloseUserMenu}>
-          <div onClick={handleLogout}>
-    <div className="side-bar-item-icon">
+          <div
+           className="header-drop-down-item"
+           onClick={handleLogout}
+           >
+    <div className="header-drop-down-item-icon">
       <span class="material-icons">logout</span>
     </div>
-    <div className="side-bar-item-label">Logout</div>
+    <div className="header-drop-down-item-label">Logout</div>
   </div>
           </MenuItem>
-       
+       <MenuItem>
+       <div
+        className="header-drop-down-item"
+        onClick={() => history.push("/setting")}
+      >
+        <div className="header-drop-down-item-icon">
+          <span class="material-icons">settings</span>
+        </div>
+        <div className="header-drop-down-item-label">Setting</div>
+      </div>
+       </MenuItem>
       </Menu>
          
          
