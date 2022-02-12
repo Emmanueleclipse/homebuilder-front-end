@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from "../../axios"
+import axios from "../../axios";
 import { useEffect,useState } from 'react'
 import { useSelector } from "react-redux";
 import "./notification.styles.css"
@@ -7,8 +7,15 @@ const Notification=()=> {
 const {  token } = useSelector((state) => state.authReducer);
 const [notifications,setNotifications]=useState([])
 const handleDeleteNotification=(index)=>{
-  const notifi = notifications.filter(e=>e.pk !==index)
-  setNotifications(notifi)
+  axios.delete(`/notification/notifications/${index}`,{ headers: { Authorization: `Bearer ${token}` }}).then(e => {
+    console.log("borrar")
+    console.log(e.status)
+    if(e.status===204){
+      const notifi = notifications.filter(e=>e.pk !==index)
+      setNotifications(notifi)
+    }
+  })
+
 }
 useEffect(()=>{
   axios.get("/notification/notifications/",{ headers: { Authorization: `Bearer ${token}` }}).then(e => {
