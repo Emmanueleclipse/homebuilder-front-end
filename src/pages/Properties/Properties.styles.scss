@@ -62,12 +62,14 @@
     .home-head-card-left span {
       font-size: 40px;
     }
-    .home-cards-list {
+    .home-card-detail {
+      height: 100px;
     }
     .home-card {
       background-color: rgb(255, 255, 255);
       padding: 1rem;
       margin: 0.5rem 0;
+      
       
       .home-card-header {
         display: flex;
@@ -83,6 +85,7 @@
             margin-bottom: 1.5rem;
           }
         }
+      
         .home-card-title {
           font-weight: 500;
         }
@@ -137,4 +140,30 @@
     cursor: pointer;
     padding: .6rem;
     font-size: 12px  !important;
+  }
+
+  .btns-div{
+    button{
+      width: 50%;
+      text-align: center;
+      padding: 1rem;
+      border-radius: 6px;
+      border: none;
+      
+    }
+    .btn-light-color{
+      background-color: #e1e4e1;
+    }
+    .btn-green-color{
+      background-color: #2a804c !important;
+      a{
+        color: white;
+      }
+    }
+    .btn-light-color{
+      margin-right: 1rem;
+    }
+    .btn-green-color{
+      color: white;
+    }
   }

@@ -55,15 +55,20 @@ const Property = ({ history }) => {
           <div className="home-cards-list">
             {properties.map((property) => (
               <div className="home-card">
+             
+
                 <div className="home-card-header">
+                
+                      
                   <div className="home-card-left">
 
                     <div className="home-card-info">
-                      <div className="home-card-title">
-                        {property.name}
-                      </div>
+                     <div className='home-card-title'>
+                      {property.name}
+                     </div>
+                     <br />
                       <div className="home-card-subtitle">
-                        {property.address}, {properties.city}
+                        {property.address}, {property.city}
                       </div>
                     </div>
                   </div>
@@ -73,13 +78,23 @@ const Property = ({ history }) => {
                         View
                       </button>
             </Link>*/}
-                    <button onClick={() => {
+                  
+
+                  </div>
+
+                </div>
+                <div className="home-card-detail">
+                 
+                </div>
+                <div className="btns-div d-sm-flex mt-3">
+                  <button className="btn-light-color" onClick={() => {
                       dispatch(TOGGLE_POPUP({ payloadToUpdate: property }));
 
-                    }} className="edit-activity-btn">
+                    }}>
                       Edit
-                    </button>
-                    <button onClick={() => {
+                  </button>
+                
+                <button  className="btn-green-color" onClick={() => {
                       dispatch(POPUP_DELETE({
                         payloadToDelete: {
                           Id: property.pk,
@@ -87,14 +102,12 @@ const Property = ({ history }) => {
                           data: property
                         }
                       }))
-                    }} className="edit-activity-btn">
-                      Delete
-                    </button>
+                    }}>
 
-                  </div>
+                    Delete
+                </button>
 
-                </div>
-                <div className="home-card-detail"></div>
+              </div>
               </div>
             ))}
           </div>
