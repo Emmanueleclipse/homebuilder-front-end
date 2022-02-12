@@ -68,11 +68,11 @@ const Property = ({ history }) => {
                     </div>
                   </div>
                   <div className="home-card-right">
-                    <Link to={"/property-activities/" + property.pk}>
+                    {/*<Link to={"/property-activities/" + property.pk}>
                       <button className="view-activity-btn">
                         View
                       </button>
-                    </Link>
+            </Link>*/}
                     <button onClick={() => {
                       dispatch(TOGGLE_POPUP({ payloadToUpdate: property }));
 

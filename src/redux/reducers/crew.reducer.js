@@ -1,6 +1,6 @@
 import { crewTypes } from "../types/crew.types";
 
-const crewReducer = (state = { crews: [], showPopup: false, crewInvitations: [], showPopupUpdate: false, showPopupDelete: false }, action) => {
+const crewReducer = (state = { submitMilestone:false,crews: [], showPopup: false, crewInvitations: [], showPopupUpdate: false, showPopupDelete: false }, action) => {
   switch (action.type) {
     case crewTypes.FETCH_CREW_START:
       return {
@@ -79,6 +79,12 @@ const crewReducer = (state = { crews: [], showPopup: false, crewInvitations: [],
         showPopupDelete: !state.showPopupDelete,
         payloadToDelete: action.payloadToDelete,
       };
+    case crewTypes.MILESTONE_SUBMIT:
+        return {
+          ...state,
+          submitMilestone: !state.submitMilestone,
+          
+        };
 
     default:
       return state;

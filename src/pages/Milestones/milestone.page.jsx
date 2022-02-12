@@ -10,8 +10,11 @@ import axios from "../../axios";
 import { Link, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Popup from "reactjs-popup";
 import Swal from "sweetalert2";
+import Messages from "../../components/messages/messages";
+import DeleteModal from '../../components/DeleteDialouge/deleteModal'
+import { POPUP_DELETE } from "../../redux/actions/crewAction";
+
 
 const Milestones = (props) => {
   const [feeds, setFeeds] = React.useState([]);
@@ -19,10 +22,17 @@ const Milestones = (props) => {
   const { id } = useParams();
   const [property, setProperty] = React.useState("");
   const [message, setMessage] = React.useState("");
+  const [itemGlobal, setItemGlobal] = React.useState({});
+
   const [messages, setMessages] = React.useState([]);
   const { user } = useSelector((state) => state.authReducer);
+  
+  const dispatch = useDispatch();
+ // const [showPopupDelete, setShowPopupDelete] = React.useState(false)
+ const { showPopupDelete } = useSelector((state) => state.crewReducer);
+ const { submitMilestone } = useSelector((state) => state.crewReducer);
 
-  let activities_arrr = [];
+ let activities_arrr = [];
   function convertDate(date) {
     return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
   }
@@ -38,31 +48,34 @@ const Milestones = (props) => {
     setMessage(event.target.value);
   }
 
-  const sendMsg = (event) => {
-    console.log(event);
-    event.preventDefault();
-    let senders = ["me", "other"];
-    let from = senders[Math.floor(Math.random() * 2 + 0)];
-    let newMsg = {
-      id: "1",
-      from: from,
-      to: "dadawd",
-      text: message,
-    };
-
-    messages.push(newMsg);
-    setMessages(messages);
-    setMessage("");
-    console.log(messages);
-  };
+  
 
   const toAccept = (item) => {
-    item.activity_status = "completed";
-
-    Swal.fire({
+    dispatch(POPUP_DELETE({
+      payloadToDelete: {
+        action: "AcceptMilestone",
+        data: item,
+        props:props
+      }
+    }))
+    
+//setShowPopupDelete(true)
+    /*Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
-      
+      customClass:{
+        confirmButton:'swal-btn-confirm swal2-my-btn',
+        cancelButton:'swal2-cancel swal2-my-btn'
+      },
+      showClass: {
+        backdrop: 'swal2-noanimation', // disable backdrop animation
+        popup: '',                     // disable popup animation
+        icon: ''                       // disable icon animation
+      },
+      hideClass: {
+        popup: '',                     // disable popup fade-out animation
+      },
+      buttonsStyling:false,
       showCancelButton: true,
       confirmButtonColor: "#398d63",
       cancelButtonColor: "#FFFFFF      ",
@@ -108,17 +121,37 @@ const Milestones = (props) => {
             });
           });
       }
-    });
+    });*/
   };
 
   const changes = (item) => {
-    Swal.fire({
+    dispatch(POPUP_DELETE({
+      payloadToDelete: {
+        action: "ChangesMilestone",
+        data: item,
+        props:props
+      }
+    }))
+    
+    /*Swal.fire({
+      customClass:{
+        confirmButton:'swal-btn-confirm swal2-my-btn',
+        cancelButton:'swal2-cancel swal2-my-btn'
+      },
+      showClass: {
+        backdrop: 'swal2-noanimation', // disable backdrop animation
+        popup: '',                     // disable popup animation
+        icon: ''                       // disable icon animation
+      },
+      hideClass: {
+        popup: '',                     // disable popup fade-out animation
+      },
+      buttonsStyling:false,
       title: "Are you sure?",
       text: "You won't be able to revert this!",
     
       showCancelButton: true,
-      confirmButtonColor: "#398d63",
-      cancelButtonColor: "#FFFFFF      ",
+     
       confirmButtonText: "Yes, Request changes!",
     }).then((result) => {
       if (result.isConfirmed) {
@@ -161,18 +194,41 @@ const Milestones = (props) => {
             });
           });
       }
-    });
+    });*/
   };
 
-  const submit = (item) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+  const __submit = (item) => {
+    setItemGlobal(item)
+    dispatch(POPUP_DELETE({
+      payloadToDelete: {
+        action: "SubmitMilestone",
+        data: item,
+        props:props
+      }
+    }))
+   /*Swal.fire({
+    customClass:{
+      confirmButton:'swal-btn-confirm swal2-my-btn',
+      cancelButton:'swal2-cancel swal2-my-btn'
+    },
+    showClass: {
+      backdrop: 'swal2-noanimation', // disable backdrop animation
+      popup: '',                     // disable popup animation
+      icon: ''                       // disable icon animation
+    },
+    hideClass: {
+      popup: '',                     // disable popup fade-out animation
+    },
+    buttonsStyling:false,
+
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+  
+    showCancelButton: true,
+    showConfirmButton:true,
+   
     
-      showCancelButton: true,
-      confirmButtonColor: "#398d63",
-      cancelButtonColor: "#FFFFFF      ",
-      confirmButtonText: "Yes, send it!",
+    confirmButtonText: "Yes, Submit it!",
     }).then((result) => {
       if (result.isConfirmed) {
         axios
@@ -180,7 +236,7 @@ const Milestones = (props) => {
             headers: { Authorization: `Bearer ${props.token}` },
           })
           .then((res) => {
-            toast.success(item.activity_name + " " + "sent to review", {
+            toast.success(item.activity_name + " " + "was accepted", {
               position: "bottom-right",
               autoClose: 2000,
               hideProgressBar: true,
@@ -214,14 +270,58 @@ const Milestones = (props) => {
             });
           });
       }
-    });
+    });*/
+    /*if (submitMilestone) {
+      axios
+        .get("/api/activity/submit/" + item.activity_id, {
+          headers: { Authorization: `Bearer ${props.token}` },
+        })
+        .then((res) => {
+          toast.success(item.activity_name + " " + "was accepted", {
+            position: "bottom-right",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          itemGlobal.activity_status = "Awaiting feedback";
+          setFeeds(
+            feeds.map((i) => {
+              if (i.activity_id === itemGlobal.activity_id) {
+                i = itemGlobal;
+                console.log(i);
+              }
+              return i;
+            })
+          );
+          // item.activity_status='Awaiting feedback';
+        })
+        .catch((err) => {
+          console.log(err.response);
+          toast.error(err.response.data.detail, {
+            position: "bottom-right",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        });
+    }*/
+
   };
 
   useEffect(() => {
     //const property_id = this.router.params.id;
     //  ?props.history.push('/')
     console.log("l");
-    if (props.token) {
+    
+
+
+    if (props.token || submitMilestone) {
       console.log(user);
 
       axios
@@ -328,55 +428,19 @@ const Milestones = (props) => {
         })
         .catch((err) => console.log(err));
     }
-  }, [props.token]);
+  }, [props.token,submitMilestone]);
 
   return (
     <div className="dashboard-page">
+         
+
       <div className="dashboard-page-heading custom-heading">
-        <span class="material-icons">chat</span>
-        <p>Messages</p>
-
-        {/*<Popup trigger={<button className="msgButton">Messages</button>} modal>
-          
-          <div className="chat-room">
-              <div className="chat-header">
-                <h5>{property.name}</h5>
-              </div>
-              <div className="chat-box">
-              
-                {/*messages !== undefined &&
-                  messages.map(msg=>(
-                    
-                    <>
-                      {msg.from === 'me' &&
-                        <div className="msg-to">{msg.text}</div>  
-
-                      }
-                      {msg.from !== 'me' &&
-                        <div className="msg-from">{msg.text}</div>
-
-                      }
-                    </>
-                    
-
-                  ))
-
-                    
-              </div>
-
-              
-
-              
-              <div className="chat-footer">
-                
-                <form action="" onSubmit={(event)=>sendMsg(event)}>
-                  <input type="text" value={message} placeholder='Say something nice' autofocus onChange={(e)=> setMessage(e.target.value)} className="chat-input" />
-                  <button className='send-btn' >sent</button>
-                </form>
-              </div>
-          </div>
-          
-                  </Popup>*/}
+      <Link to={"/messages/"+id} style={{backgroundColor:'none',color:'#398d63',border:'none',display:'flex',flexDirection:'column',alignItems:'center'}}>
+      <span class="material-icons">chat</span><p>Messages</p>
+      
+      </Link>
+       
+       
       </div>
 
       <div className="milestones-container custom-container">
@@ -417,6 +481,7 @@ const Milestones = (props) => {
                     >
                       {(item.activity_status )}
                     </p>
+                    <br />
                   </div>
                   <p>Due {item.date}</p>
 
@@ -434,7 +499,7 @@ const Milestones = (props) => {
                       <button
                         className="btn-green-color"
                         href="#"
-                        onClick={() => submit(item)}
+                        onClick={() => __submit(item)}
                       >
                         Submit
                       </button>
@@ -481,6 +546,7 @@ const Milestones = (props) => {
       </div>
 
       <ToastContainer />
+      {showPopupDelete && <DeleteModal />}
     </div>
   );
 };

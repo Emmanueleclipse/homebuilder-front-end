@@ -65,7 +65,7 @@ class App extends Component {
                         <Route exact path='/home' component={Home} />
                         <Route exact path="/setting" component={Setting} />
                         <Route exact path="/crew" component={Crew} />
-                        <Route exact path="/messages" component={Messages} />
+                        <Route exact path="/messages/:id" component={Messages} />
                         <Route path="/activity" component={Activity} />
                         
                         <Route path='/property-activities/:property_id' component={Home} />

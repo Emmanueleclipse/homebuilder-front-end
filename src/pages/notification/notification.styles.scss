@@ -1,40 +1,23 @@
-.notification-container{
-    padding-top: 3rem;
-    padding: 3rem 12rem;
- 
-    @media (max-width: 768px) {
-      padding: 3rem;
-    }
-    @media (max-width: 468px) {
-      padding: 1rem;
-    }
-    .notification-card{
-      background-color: rgb(235, 235, 235);
-      padding: 1.2rem;
-      border-radius: .8rem;
-      box-shadow: 0 .05rem 0.1rem .06rem rgb(170, 170, 170);
-      margin-top:1rem;
-      
-      display:flex;
-      flex-direction:row;
-      align-items: center;
-      justify-content: space-between;
-     
-    }
-    span{
-      display:flex;
-      margin:0;
-      text-align: end;
-
-    }
-    .notification-tittle{
-      margin:0;
-      display:flex;
-    }
-.notification-date{
-  font-size: .7rem;
-  color:rgb(97, 97, 97)
-}
-    }
+.general-container{
+   
+    display:flex;
+    flex-direction: column;    
   
- 
+    align-items: center;
+}
+.notification-container{
+    width: 70%;
+    margin:1rem 0;
+    background-color: rgb(235, 235, 235);
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-radius: .8rem;
+    box-shadow: 0 .15rem .1rem .1rem rgb(182, 182, 182);
+    p{
+        margin:0;
+        font-size: .6rem;
+    }
+}
