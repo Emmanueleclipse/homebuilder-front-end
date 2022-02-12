@@ -34,6 +34,11 @@ useEffect(()=>{
     <h6>
     {item.title}
     </h6>
+    <p
+    style={{fontSize:12}}
+    >
+  {item.body}
+    </p>
     <p>{item.created_at}</p>
     </div>
     <div>
