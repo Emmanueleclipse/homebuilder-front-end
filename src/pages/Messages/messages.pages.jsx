@@ -1,16 +1,20 @@
-import React, {useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Button from "../../components/button/button.component";
 import Person2 from "../../assets/images/person2.jpg";
 import { fetchActivities } from "../../redux/actions/activityAction";
 import { connect } from "react-redux";
-import { NavLink , useParams} from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import "./messages.styles.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchMessages, createMessage } from "../../redux/actions/messageActions";
+import {
+  fetchMessages,
+  createMessage,
+} from "../../redux/actions/messageActions";
 import axios from "../../axios";
 import { ToastContainer, toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
-const shortid = require('shortid');
+const shortid = require("shortid");
 
 const Messages = (props) => {
   const dispatch = useDispatch();
@@ -18,89 +22,79 @@ const Messages = (props) => {
   const [message, setMessage] = React.useState("");
   const [property, setProperty] = React.useState({});
   var msgRef = useRef(null);
-  const [shouldScroll, setShouldScroll] = React.useState(false)
+  const [shouldScroll, setShouldScroll] = React.useState(false);
   const { token, error, loading } = useSelector((state) => state.authReducer);
   const { messages } = useSelector((state) => state.messageReducer);
 
   const { user } = useSelector((state) => state.authReducer);
   const { id } = useParams();
 
- 
   const sendMsg = (event) => {
-  
     event.preventDefault();
-    let newMsg={}
-  
-    
+    let newMsg = {};
+
     if (msgRef) {
-      msgRef.current.addEventListener('DOMNodeInserted', event => {
+      msgRef.current.addEventListener("DOMNodeInserted", (event) => {
         const { currentTarget: target } = event;
-        target.scroll({ top: target.scrollHeight, behavior: 'smooth' });
+        target.scroll({ top: target.scrollHeight, behavior: "smooth" });
       });
     }
-    if(user.role==='HOMEBUILDER'){
+    if (user.role === "HOMEBUILDER") {
       newMsg = {
         id: shortid.generate(),
         send_by: user.email,
-        send_to:property.homeowner,
-        subject: 'subject',
-        property:id,
-        message:message
+        send_to: property.homeowner,
+        subject: "subject",
+        property: id,
+        message: message,
       };
       messages.push(newMsg);
-
-    }else if(user.role === 'HOMEOWNER'){
+    } else if (user.role === "HOMEOWNER") {
       newMsg = {
         id: shortid.generate(),
         send_by: user.email,
-        send_to:property.homebuilder,
-        subject: 'subject',
-        property:id,
-        message:message
+        send_to: property.homebuilder,
+        subject: "subject",
+        property: id,
+        message: message,
       };
       messages.push(newMsg);
-
     }
 
-    
-  
-    dispatch(createMessage({message:newMsg, token: token }));
+    dispatch(createMessage({ message: newMsg, token: token }));
 
-    setMessage('');
+    setMessage("");
 
     event.target.value = "";
     console.log(msgRef.current.scrollHeight);
   };
 
-  const needScroll=()=>{
+  const needScroll = () => {
     if (!shouldScroll) {
       msgRef.current.scrollTop = msgRef.current.scrollHeight;
-
     }
-  }
+  };
 
   useEffect(() => {
-   
     if (props.token) {
       axios
         .get("api/property/" + id, {
           headers: { Authorization: `Bearer ${props.token}` },
         })
         .then((res) => {
-          setProperty(res.data)
-        }).catch((err)=>{})
-
-
+          setProperty(res.data);
+        })
+        .catch((err) => {});
     }
 
     if (msgRef) {
-      msgRef.current.addEventListener('DOMNodeInserted', event => {
+      /* msgRef.current.addEventListener('DOMNodeInserted', event => {
         const { currentTarget: target } = event;
         target.scroll({ top: target.scrollHeight, behavior: 'smooth' });
-      });
+      });*/
     }
-  
-    dispatch(fetchMessages({ token: token , id:parseInt(id)}));
+
+    dispatch(fetchMessages({ token: token, id: parseInt(id) }));
   }, [dispatch]);
   const [page, setPage] = useState(1);
   const skip = (page - 1) * 4;
@@ -110,7 +104,38 @@ const Messages = (props) => {
       <div className="dashboard-page-heading">
         <h2>Messages - {property.name}</h2>
       </div>
-      <div className="chat-room">
+      <div className="inbox__container">
+        <div className="inbox__head">
+          <p>Messages</p>
+
+          <Link className="btn-green-color" to={"/new_message/" + id}>
+            <a href="">Compose</a>
+          </Link>
+        </div>
+        <div className="inbox__messages">
+          <table>
+            <tr className="inbox__table_header">
+              <th>Time</th>
+              <th>From</th>
+              <th>Subject</th>
+            </tr>
+            <br />
+            {messages.map((msg, i) => {
+              return(
+                <tr className="inbox__table_body">
+                <td>
+                  <span>{msg.created_at}</span>
+                </td>
+                <td>{msg.send_to}</td>
+                <td>{msg.subject}</td>
+              </tr>
+              )
+            })}
+          </table>
+        </div>
+      </div>
+
+      {/*<div className="chat-room">
         <div className="chat-header">
           <h5>kkiki</h5>
         </div>
@@ -142,7 +167,7 @@ const Messages = (props) => {
             <button className="send-btn">sent</button>
           </form>
         </div>
-      </div>
+                </div>*/}
       {/*<div className="messages-container">
         <div className="messages-header">
           <NavLink to="/messages/add">
@@ -214,25 +239,25 @@ const Messages = (props) => {
             </nav>
           </div>
         </div>
-      </div>*/}
-            <ToastContainer />
-
+                  </div>*/}
+      <ToastContainer />
     </div>
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    'token': state.authReducer.token,
-    'activities': state.activityReducer.activities,
-    'activityError': state.activityReducer.error,
-    'activityLoading': state.activityReducer.loading
-  }
-}
+    token: state.authReducer.token,
+    activities: state.activityReducer.activities,
+    activityError: state.activityReducer.error,
+    activityLoading: state.activityReducer.loading,
+  };
+};
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    'fetchAllActivities': (token, property_id) => dispatch(fetchActivities({ token, property_id }))
-  }
-}
+    fetchAllActivities: (token, property_id) =>
+      dispatch(fetchActivities({ token, property_id })),
+  };
+};
 export default connect(mapStateToProps, mapDispatchToProps)(Messages);

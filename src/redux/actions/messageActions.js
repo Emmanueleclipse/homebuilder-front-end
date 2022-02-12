@@ -11,7 +11,14 @@ export const fetchMessages = ({ token , id}) => {
     dispatch({ type: messageTypes.FETCH_MESSAGE_START });
     axios.get("/api/messages/", config).then(response => {
       console.log(response.data)
-      dispatch({ type: messageTypes.FETCH_MESSAGE_SUCCESS, messages: response.data.filter(item=>item.property===id) });
+      let msgs=[]
+      console.log('actions msg', id)
+      if(!isNaN(id)){
+        msgs=response.data.filter(item=>item.property===id) 
+      }else{
+        msgs=response.data
+      }
+      dispatch({ type: messageTypes.FETCH_MESSAGE_SUCCESS, messages:msgs });
     }).catch(error => {
       console.log(error)
 
@@ -34,7 +41,7 @@ export const createMessage =
         dispatch({ type: messageTypes.CREATE_MESSAGE_SUCCESS, success: response.ok });
       }).catch(error => {
         console.log(error.response)
-        toast.error( "something went wrong, maybe this property does not have owner", {
+        toast.error( "something went wrong", {
           position: "bottom-right",
           autoClose: 2000,
           hideProgressBar: true,

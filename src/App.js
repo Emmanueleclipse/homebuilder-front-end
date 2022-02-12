@@ -26,6 +26,8 @@ import PaymentSuccess from "./pages/PaymentSuccess/PaymentSuccess";
 import ResetPassword from "./pages/ResetPassword/reset-password.component";
 import milestonePage from "./pages/Milestones/milestone.page";
 import Details from "./pages/ActivityDetails/Details";
+import NewMessage from "./pages/Messages/NewMessages/newMessage";
+
 
 class App extends Component {
 
@@ -66,6 +68,10 @@ class App extends Component {
                         <Route exact path="/setting" component={Setting} />
                         <Route exact path="/crew" component={Crew} />
                         <Route exact path="/messages/:id" component={Messages} />
+                        <Route exact path="/messages" component={Messages} />
+
+                        <Route exact path="/new_message/:id" component={NewMessage} />
+
                         <Route path="/activity" component={Activity} />
                         
                         <Route path='/property-activities/:property_id' component={Home} />

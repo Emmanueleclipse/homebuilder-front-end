@@ -175,3 +175,111 @@
     }
   }
 }
+
+.inbox__container{
+  
+  padding: 2rem;
+  .inbox__head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    button,a{
+      background-color: #006265;
+      color: white;
+      width: 150px;
+      text-align: center;
+      padding: 1rem;
+      border-radius: 6px;
+      border: none;
+    }
+  }
+}
+
+.inbox__messages{
+  margin-top: 25px;
+  
+  table{
+    width: 100%;
+    
+    .inbox__table_header{
+      margin-bottom: 25px;
+      background-color: #006265;
+      height: 50px;
+      border-radius: 60px;
+      color: white;
+      padding-left: 5px;
+
+    }
+    td{
+      
+      max-width: 25%;
+      word-break:break-all;
+
+    }
+    .inbox__table_body{
+      margin-bottom: 25px;
+      background-color: rgb(226, 225, 225);
+      height: 50px;
+      border-radius: 60px;
+    
+      padding-left: 5px;
+
+    }
+  
+  }
+}
+
+
+.principal-container{
+
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+
+.newMessage_container{
+
+  background-color: #dcf7f4;
+  display: flex;
+  justify-self: center;
+  justify-content: center;
+  border-radius: 10px;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  width: 60%;
+  margin-bottom: 10%;
+  
+  form{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+
+
+    .btnForm{
+      background-color: white;
+      border: 1px solid black;
+      border-radius: 6px;
+      height: 70px ;
+    
+    }
+
+    textarea{
+      background-color: white;
+      border: 1px solid black;
+      border-radius: 6px;
+      height: 120px;
+    }
+
+    .send{
+      background-color: #006265;
+      height: 50px;
+      color: white;
+      width: 120px;
+      border: none;
+      border-radius: 6px;
+    }
+  }
+}
+}
