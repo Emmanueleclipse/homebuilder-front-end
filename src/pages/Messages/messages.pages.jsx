@@ -6,57 +6,66 @@ import { connect } from "react-redux";
 import { NavLink , useParams} from "react-router-dom";
 import "./messages.styles.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchMessages } from "../../redux/actions/messageActions";
+import { fetchMessages, createMessage } from "../../redux/actions/messageActions";
 import axios from "../../axios";
 
 const shortid = require('shortid');
 
 const Messages = (props) => {
   const dispatch = useDispatch();
-  const [messages, setMessages] = React.useState([]);
+  //const [messages, setMessages] = React.useState([]);
   const [message, setMessage] = React.useState("");
   const [property, setProperty] = React.useState({});
   var msgRef = useRef(null);
   const [shouldScroll, setShouldScroll] = React.useState(false)
   const { token, error, loading } = useSelector((state) => state.authReducer);
+  const { messages } = useSelector((state) => state.messageReducer);
+
   const { user } = useSelector((state) => state.authReducer);
   const { id } = useParams();
 
  
   const sendMsg = (event) => {
-    console.log(user)
+  
     event.preventDefault();
-    setShouldScroll(msgRef.current.scrollTop + msgRef.current.clientHeight === msgRef.current.scrollHeight);
-
-    let senders = ["me", "other"];
-    let from = senders[Math.floor(Math.random() * 2 + 0)];
+    let newMsg={}
+  
+    
+    if (msgRef) {
+      msgRef.current.addEventListener('DOMNodeInserted', event => {
+        const { currentTarget: target } = event;
+        target.scroll({ top: target.scrollHeight, behavior: 'smooth' });
+      });
+    }
     if(user.role==='HOMEBUILDER'){
-      let newMsg = {
+      newMsg = {
         id: shortid.generate(),
-        author: user.pk,
-        receiver:property.homeowner,
-        text: message,
-        roomId:id
+        send_by: user.email,
+        send_to:property.homeowner,
+        subject: 'subject',
+        property:id,
+        message:message
       };
       messages.push(newMsg);
 
-    }else{
-      let newMsg = {
+    }else if(user.role === 'HOMEOWNER'){
+      newMsg = {
         id: shortid.generate(),
-        author: user.pk,
-        receiver:property.homebuilder,
-        text: message,
-        roomId:id
+        send_by: user.email,
+        send_to:property.homebuilder,
+        subject: 'subject',
+        property:id,
+        message:message
       };
       messages.push(newMsg);
 
     }
 
     
-    setMessages(messages);
-    
+  
+    dispatch(createMessage({message:newMsg, token: token }));
+
     setMessage('');
-    msgRef.current.scrollTop = msgRef.current.scrollHeight+2000;
 
     event.target.value = "";
     console.log(msgRef.current.scrollHeight);
@@ -70,6 +79,7 @@ const Messages = (props) => {
   }
 
   useEffect(() => {
+   
     if (props.token) {
       axios
         .get("api/property/" + id, {
@@ -82,8 +92,8 @@ const Messages = (props) => {
 
     }
   
-    dispatch(fetchMessages({ token: token }));
-  }, [dispatch, message]);
+    dispatch(fetchMessages({ token: token , id:parseInt(id)}));
+  }, [dispatch]);
   const [page, setPage] = useState(1);
   const skip = (page - 1) * 4;
   const pages = Math.ceil(messages.length / 4);
@@ -102,9 +112,9 @@ const Messages = (props) => {
             messages.map((msg) => (
               <>
               
-                {msg.from === "me" && <div  className="msg-to"><p>{msg.text}</p></div>}
-                {msg.from !== "me" && (
-                  <div className="msg-from"><p>{msg.text}</p></div>
+                { msg.send_by === user.email && <div key={msg.id} className="msg-to"><p>{msg.message}</p></div>}
+                {(msg.send_by !== user.email)  && (
+                  <div className="msg-from" key={msg.id}><p>{msg.message}</p></div>
                 )}
               </>
             ))}
