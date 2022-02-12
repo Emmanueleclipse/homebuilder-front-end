@@ -56,8 +56,8 @@ const Activity = ({history }) => {
     activity.append("submitted", submitted);
     activity.append("_from", _from);
     activity.append("_to", _to);
-    activity.append("image", file);
-    
+    activity.append("2222image", file);
+    console.log(file)
     dispatch(createActivity({ activity, token: token }));
   };
   
@@ -169,15 +169,12 @@ const Activity = ({history }) => {
               </div>
             </div>
             <div className="form-submit">
-              {
-                creatingActivity ? 
-                <p style={{fontWeight:"bold"}}>Creating activity. please wait....</p>
-                :
+              
                 <Button type="main">
                 Submit
               </Button>
 
-              }
+              
             
             
             </div>

@@ -86,3 +86,10 @@ export const POPUP_DELETE = ({ payloadToDelete }) => {
     dispatch({ type: crewTypes.POPUP_DELETE, payloadToDelete: payloadToDelete });
   }
 }
+
+export const MILESTONE_SUBMIT = ({ payloadToSubmit }) => {
+  console.log('ds')
+  return dispatch => {
+    dispatch({ type: crewTypes.MILESTONE_SUBMIT});
+  }
+}

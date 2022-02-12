@@ -15,6 +15,8 @@ const CreateProperty = ({ history }) => {
   const [city, setCity] = useState("");
   const [address, setAddress] = useState("");
   const [zipCode, setZipCode] = useState("");
+  const [file, set_file] = useState("");
+
   const {
     error,
     creatingProperty: creatingProperty,
@@ -34,15 +36,18 @@ const CreateProperty = ({ history }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+   // console.log(file)
     const propertyObj = {
       name: name,
       state: statetxt,
       // homeowner,
       city: city,
       address: address,
-      zip_code: zipCode
+      zip_code: zipCode,
+      file:file
     };
-    dispatch(createProperty({ property: propertyObj, token: token }));
+   dispatch(createProperty({ property: propertyObj, token: token }));
+    console.log(propertyObj)
   };
 
   return (
@@ -121,6 +126,16 @@ const CreateProperty = ({ history }) => {
                 onChange={(e) => setZipCode(e.target.value)}
               />
             </div>
+            <div className="file-upload-btn">
+                <label htmlFor="file-upload">Select Image</label>
+                <input
+                  type="file"
+                  id="file-upload"
+                  accept="image/png, image/gif, image/jpeg" 
+                  onChange={(e) => set_file(e.target.files[0])}
+                />
+                {file.name}
+              </div>
 
             <div className="form-submit">
               {

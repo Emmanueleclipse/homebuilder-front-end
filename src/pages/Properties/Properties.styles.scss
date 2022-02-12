@@ -68,8 +68,10 @@
       background-color: rgb(255, 255, 255);
       padding: 1rem;
       margin: 0.5rem 0;
+      
       .home-card-header {
         display: flex;
+        background-color: red;
         justify-content: space-between;
         align-items: center;
         @media (max-width: 468px) {

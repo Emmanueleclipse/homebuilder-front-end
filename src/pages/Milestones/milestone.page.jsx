@@ -12,6 +12,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
 import Messages from "../../components/messages/messages";
+import DeleteModal from '../../components/DeleteDialouge/deleteModal'
+import { POPUP_DELETE } from "../../redux/actions/crewAction";
 
 
 const Milestones = (props) => {
@@ -20,11 +22,17 @@ const Milestones = (props) => {
   const { id } = useParams();
   const [property, setProperty] = React.useState("");
   const [message, setMessage] = React.useState("");
+  const [itemGlobal, setItemGlobal] = React.useState({});
+
   const [messages, setMessages] = React.useState([]);
   const { user } = useSelector((state) => state.authReducer);
+  
   const dispatch = useDispatch();
+ // const [showPopupDelete, setShowPopupDelete] = React.useState(false)
+ const { showPopupDelete } = useSelector((state) => state.crewReducer);
+ const { submitMilestone } = useSelector((state) => state.crewReducer);
 
-  let activities_arrr = [];
+ let activities_arrr = [];
   function convertDate(date) {
     return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
   }
@@ -43,9 +51,16 @@ const Milestones = (props) => {
   
 
   const toAccept = (item) => {
+    dispatch(POPUP_DELETE({
+      payloadToDelete: {
+        action: "AcceptMilestone",
+        data: item,
+        props:props
+      }
+    }))
     
-
-    Swal.fire({
+//setShowPopupDelete(true)
+    /*Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
       customClass:{
@@ -106,11 +121,19 @@ const Milestones = (props) => {
             });
           });
       }
-    });
+    });*/
   };
 
   const changes = (item) => {
-    Swal.fire({
+    dispatch(POPUP_DELETE({
+      payloadToDelete: {
+        action: "ChangesMilestone",
+        data: item,
+        props:props
+      }
+    }))
+    
+    /*Swal.fire({
       customClass:{
         confirmButton:'swal-btn-confirm swal2-my-btn',
         cancelButton:'swal2-cancel swal2-my-btn'
@@ -171,12 +194,19 @@ const Milestones = (props) => {
             });
           });
       }
-    });
+    });*/
   };
 
-  const submit = (item) => {
-   
-   Swal.fire({
+  const __submit = (item) => {
+    setItemGlobal(item)
+    dispatch(POPUP_DELETE({
+      payloadToDelete: {
+        action: "SubmitMilestone",
+        data: item,
+        props:props
+      }
+    }))
+   /*Swal.fire({
     customClass:{
       confirmButton:'swal-btn-confirm swal2-my-btn',
       cancelButton:'swal2-cancel swal2-my-btn'
@@ -240,14 +270,58 @@ const Milestones = (props) => {
             });
           });
       }
-    });
+    });*/
+    /*if (submitMilestone) {
+      axios
+        .get("/api/activity/submit/" + item.activity_id, {
+          headers: { Authorization: `Bearer ${props.token}` },
+        })
+        .then((res) => {
+          toast.success(item.activity_name + " " + "was accepted", {
+            position: "bottom-right",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          itemGlobal.activity_status = "Awaiting feedback";
+          setFeeds(
+            feeds.map((i) => {
+              if (i.activity_id === itemGlobal.activity_id) {
+                i = itemGlobal;
+                console.log(i);
+              }
+              return i;
+            })
+          );
+          // item.activity_status='Awaiting feedback';
+        })
+        .catch((err) => {
+          console.log(err.response);
+          toast.error(err.response.data.detail, {
+            position: "bottom-right",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        });
+    }*/
+
   };
 
   useEffect(() => {
     //const property_id = this.router.params.id;
     //  ?props.history.push('/')
     console.log("l");
-    if (props.token) {
+    
+
+
+    if (props.token || submitMilestone) {
       console.log(user);
 
       axios
@@ -354,7 +428,7 @@ const Milestones = (props) => {
         })
         .catch((err) => console.log(err));
     }
-  }, [props.token]);
+  }, [props.token,submitMilestone]);
 
   return (
     <div className="dashboard-page">
@@ -425,7 +499,7 @@ const Milestones = (props) => {
                       <button
                         className="btn-green-color"
                         href="#"
-                        onClick={() => submit(item)}
+                        onClick={() => __submit(item)}
                       >
                         Submit
                       </button>
@@ -472,6 +546,7 @@ const Milestones = (props) => {
       </div>
 
       <ToastContainer />
+      {showPopupDelete && <DeleteModal />}
     </div>
   );
 };
