@@ -56,7 +56,7 @@ const Activity = ({history }) => {
     activity.append("submitted", submitted);
     activity.append("_from", _from);
     activity.append("_to", _to);
-    activity.append("image", file);
+    activity.append("attachments", file);
     console.log(file)
     dispatch(createActivity({ activity, token: token }));
   };
@@ -160,6 +160,7 @@ const Activity = ({history }) => {
               </label>
               <div className="file-upload-btn">
                 <label htmlFor="file-upload">Select file</label>
+                {file.name}
                 <input
                   type="file"
                   id="file-upload"
@@ -170,9 +171,15 @@ const Activity = ({history }) => {
             </div>
             <div className="form-submit">
               
+            {
+                creatingActivity ? 
+                <p style={{fontWeight:"bold"}}>Creating activity. please wait....</p>
+                :
                 <Button type="main">
                 Submit
               </Button>
+
+              }
 
               
             

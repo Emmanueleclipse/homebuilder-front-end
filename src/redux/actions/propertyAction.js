@@ -30,9 +30,10 @@ export const fetchProperties =
 export const createProperty =
   ({ property, token }) => {
     console.log(property)
+    console.log(token,'00')
     return dispatch => {
       const config = {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}` , 'Content-Type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'},
       };
       dispatch({ type: propertyTypes.CREATE_PROPERTY_START });
       axios.post("/api/property/", property, config).then(response => {
@@ -43,7 +44,7 @@ export const createProperty =
           success: response.ok
         });
       }).catch(error => {
-        console.log(error)
+        console.log(error.response)
         dispatch({ type: propertyTypes.CREATE_PROPERTY_FAILURE, error: "Your account has not been verified" });
       })
     }

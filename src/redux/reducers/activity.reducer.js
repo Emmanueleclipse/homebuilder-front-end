@@ -32,6 +32,7 @@ const activityReducer = (state = { activities: [] }, action) => {
         ...state,
         loading: false,
         activityCreated:false,
+        creatingActivity:false,
         success: true,
       };
     case activityTypes.CREATE_ACTIVITY_FAILURE:
@@ -40,6 +41,7 @@ const activityReducer = (state = { activities: [] }, action) => {
         loading: false,
         activityCreated:false,
         error: action.error,
+        creatingActivity:false,
         success: false,
       };
     case activityTypes.RESET_ACTIVITY:
