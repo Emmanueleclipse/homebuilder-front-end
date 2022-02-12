@@ -31,12 +31,18 @@ const CreateProperty = ({ history }) => {
   }, [dispatch, token]);
   
 
+  const formData = new FormData();
 
-
+  formData.append(
+    "image",
+    file,
+    
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
    // console.log(file)
+
     const propertyObj = {
       name: name,
       state: statetxt,
@@ -44,10 +50,21 @@ const CreateProperty = ({ history }) => {
       city: city,
       address: address,
       zip_code: zipCode,
-      file:file
+      image:file,
+      
     };
-   dispatch(createProperty({ property: propertyObj, token: token }));
-    console.log(propertyObj)
+    const activity = new FormData();
+  
+    activity.append("name", name);
+    activity.append("state", statetxt);
+    activity.append("city",city);
+    activity.append("address", address);
+    activity.append("zip_code", zipCode);
+    activity.append("attachments", file);
+    
+    
+   dispatch(createProperty({ property: activity, token: token }));
+    console.log(activity)
   };
 
   return (

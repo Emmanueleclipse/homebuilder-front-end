@@ -38,4 +38,8 @@
   margin: 0;
   font-size: .6rem;
 }
+
+.notification-container .span:hover {
+  cursor: pointer;
+}
 /*# sourceMappingURL=notification.styles.css.map */

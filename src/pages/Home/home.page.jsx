@@ -62,7 +62,8 @@ const Home = (props) => {
                     date: activities[j]._from,
                     view_text: "Today",
                     description : activities[j].description,
-                    activity_id : activities[j].pk
+                    activity_id : activities[j].pk,
+                    img:properties[i].attachments
                   })
                 }
 
@@ -76,7 +77,9 @@ const Home = (props) => {
                     date: activities[j]._from,
                     view_text: "Tomorrow",
                     description : activities[j].description,
-                    activity_id : activities[j].pk
+                    activity_id : activities[j].pk,
+                    img:properties[i].attachments
+
                   })
                 }
 
@@ -90,13 +93,16 @@ const Home = (props) => {
                     date: activities[j]._from,
                     view_text: activities[j]._from,
                     description : activities[j].description,
-                    activity_id : activities[j].pk
+                    activity_id : activities[j].pk,
+                    img:properties[i].attachments
+
                   })
                 }
               }
             }
           }
         }
+        console.log(activities_arrr)
 
         if(filter==='today'){
           setFeeds(activities_arrr.filter(i=> i.view_text==='Today'))
@@ -142,14 +148,27 @@ const Home = (props) => {
                 <div>
                   <p className="fw-bold">{item.property_name}</p>
                   <p className="mb-2">{item.address}</p>
+                  <p > <u>MILESTONE:</u>&nbsp;&nbsp;{index+1} </p>
                   <p>{item.activity_name}</p>
                   {/* <p>20</p> */}
                 </div>
+                <div>
                 <div className="feed-status">
                   <p>{item.activity_status}</p>
+                 
                 </div>
+                <br />
+                <div >
+                  {item.img.length>0 &&
+                    
+                    <img src={`https://homebuilder.herokuapp.com`+item.img[0].attachment} height='100' width='100' alt="" />
+                  
+                  }
+                </div>
+                </div>
+                
               </div>
-              <p className="mt-3 text-14 text-black-50">{item.description}</p>
+              <p className="mt-3 text-14 text-black-50">{item.img.attachment}</p>
               <div className="btns-div d-sm-flex mt-3">
                 <Link className="btn-light-color" to={'milestoneDetails/'+item.property_id+'/'+item.activity_id}>
                   <a  href="">View Details</a>

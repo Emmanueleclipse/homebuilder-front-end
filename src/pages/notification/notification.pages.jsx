@@ -1,13 +1,21 @@
 import React from 'react'
 import axios from "../../axios"
-import { useEffect } from 'react'
+import { useEffect,useState } from 'react'
 import { useSelector } from "react-redux";
 import "./notification.styles.css"
 const Notification=()=> {
 const {  token } = useSelector((state) => state.authReducer);
-
+const [notifications,setNotifications]=useState([])
+const handleDeleteNotification=(index)=>{
+  const notifi = notifications.filter(e=>e.pk !==index)
+  setNotifications(notifi)
+}
 useEffect(()=>{
-  axios.get("/notification/notifications/",{ headers: { Authorization: `Bearer ${token}` }}).then(e => console.log(e))
+  axios.get("/notification/notifications/",{ headers: { Authorization: `Bearer ${token}` }}).then(e => {
+    
+    setNotifications(e.data)
+    console.log(e.data)
+  })
 },[])
   return (
     <div className="dashboard-page">
@@ -16,50 +24,31 @@ useEffect(()=>{
       </div>
       <div className="general-container">
 
-      <div className='notification-container'>
-        <div>
-        <h6>
-          Milestone Acepted
-        </h6>
-        <p>12 FEB, 2022</p>
-        </div>
-        <div>
-          <span class="material-icons">cancel</span>
-        </div>
+{notifications.map((item,index)=>{
+  return(
+    <div
+    key={index}
+     className='notification-container'>
+    <div>
+    <h6>
+    {item.title}
+    </h6>
+    <p
+    style={{fontSize:12}}
+    >
+  {item.body}
+    </p>
+    <p>{item.created_at}</p>
+    </div>
+    <div className='span'>
+      <span onClick={()=> handleDeleteNotification(item.pk)} class="material-icons">cancel</span>
+    </div>
+
+  </div>
+  )
+})}
+    
      
-     
-     
-      </div>
-     
-      <div className='notification-container'>
-        <div>
-        <h6>
-          Milestone Acepted
-        </h6>
-        <p>12 FEB, 2022</p>
-        </div>
-        <div>
-          <span class="material-icons">cancel</span>
-        </div>
-     
-     
-     
-      </div>
-     
-      <div className='notification-container'>
-        <div>
-        <h6>
-          Milestone Acepted
-        </h6>
-        <p>12 FEB, 2022</p>
-        </div>
-        <div>
-          <span class="material-icons">cancel</span>
-        </div>
-     
-     
-     
-      </div>
      
       </div>   
       

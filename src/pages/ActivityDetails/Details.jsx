@@ -169,7 +169,7 @@ const Details = (props) => {
           </div>
           
           
-          <button onClick={()=>showDoc()} style={{display:'flex'}}> <span>Pdf,Doc,Svg</span><span class='material-icons' style={{display:myHeight_images<250?'block':'none'}}>keyboard_arrow_down</span>
+          <button onClick={()=>showDoc()} style={{display:'flex'}}> <span>Pdf,Doc,Csv</span><span class='material-icons' style={{display:myHeight_images<250?'block':'none'}}>keyboard_arrow_down</span>
           <span class='material-icons' style={{visibility:myHeight_doc===250?'visible':'hidden'}}>keyboard_arrow_up</span></button>
        
 

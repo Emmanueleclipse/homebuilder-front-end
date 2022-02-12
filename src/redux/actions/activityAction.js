@@ -32,10 +32,11 @@ export const fetchActivities =
 
 
 export const createActivity =({ activity, token }) =>{
-
+  console.log(token,'00')
   return dispatch =>{
     const config = {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { Authorization: `Bearer ${token}` ,'Content-Type': 'multipart/form-data'
+    },
     };
     console.log(activity)
 
