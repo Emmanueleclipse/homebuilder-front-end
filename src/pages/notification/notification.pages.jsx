@@ -41,7 +41,7 @@ useEffect(()=>{
     </p>
     <p>{item.created_at}</p>
     </div>
-    <div>
+    <div className='span'>
       <span onClick={()=> handleDeleteNotification(item.pk)} class="material-icons">cancel</span>
     </div>
 
