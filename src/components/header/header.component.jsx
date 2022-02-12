@@ -1,12 +1,32 @@
 import React from "react"
+import { useState } from "react";
 import Person from "../../assets/images/person.jpg";
 import { Link } from "react-router-dom";
-import ArrowMenu from "../arrow-menu/arrow.menu"
+import ArrowMenu from "../arrow-menu/arrow.menu";
+import axios from "../../axios";
+import Badge from '@mui/material/Badge';
 import "./header.styles.scss";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 const Header = () => {
-  const { user } = useSelector((state) => state.authReducer);
+  const { user ,token} = useSelector((state) => state.authReducer);
+  const [countNotification,setCountNotification]=useState(5)
+  const [dot,setDot]=useState(true)
+  function not(){
+    console.log(countNotification)
+    axios.get("/notification/notifications/",{ headers: { Authorization: `Bearer ${token}` }}).then(e => {
+    if(e.data.length >countNotification){
+      setCountNotification(e.data.length)
+      setDot(false)
+//console.log(e.data.length)
 
+    }
+    })
+  }
+  useEffect(()=>{
+    not()
+  },[])
+  //setInterval(not, 5000);
   return (
     <div className="header">
       <div className="header-left">
@@ -22,9 +42,14 @@ const Header = () => {
             <span class="material-icons">chat</span>
           </div>
         </Link>
-        <Link to="notification">
+        <Link
+        onClick={()=>setDot(true)}
+        to="notification">
         <div className="notification-icon">
-          <span class="material-icons">notifications</span>
+        <Badge color='error'variant="dot" invisible={dot}>
+        <span class="material-icons">notifications</span>
+        </Badge>
+          
         </div>
         </Link>
         <div
