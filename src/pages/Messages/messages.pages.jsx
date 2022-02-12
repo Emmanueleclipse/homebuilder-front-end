@@ -8,6 +8,7 @@ import "./messages.styles.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMessages, createMessage } from "../../redux/actions/messageActions";
 import axios from "../../axios";
+import { ToastContainer, toast } from "react-toastify";
 
 const shortid = require('shortid');
 
@@ -90,6 +91,13 @@ const Messages = (props) => {
         }).catch((err)=>{})
 
 
+    }
+
+    if (msgRef) {
+      msgRef.current.addEventListener('DOMNodeInserted', event => {
+        const { currentTarget: target } = event;
+        target.scroll({ top: target.scrollHeight, behavior: 'smooth' });
+      });
     }
   
     dispatch(fetchMessages({ token: token , id:parseInt(id)}));
@@ -207,6 +215,8 @@ const Messages = (props) => {
           </div>
         </div>
       </div>*/}
+            <ToastContainer />
+
     </div>
   );
 };

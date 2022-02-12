@@ -56,7 +56,7 @@ const Activity = ({history }) => {
     activity.append("submitted", submitted);
     activity.append("_from", _from);
     activity.append("_to", _to);
-    activity.append("2222image", file);
+    activity.append("image", file);
     console.log(file)
     dispatch(createActivity({ activity, token: token }));
   };

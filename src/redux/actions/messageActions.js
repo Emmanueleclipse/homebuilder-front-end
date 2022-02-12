@@ -1,6 +1,7 @@
 
 import axios from "../../axios";
 import { messageTypes } from "../types/message.types";
+import {  toast } from "react-toastify";
 
 export const fetchMessages = ({ token , id}) => {
   return dispatch => {
@@ -33,6 +34,15 @@ export const createMessage =
         dispatch({ type: messageTypes.CREATE_MESSAGE_SUCCESS, success: response.ok });
       }).catch(error => {
         console.log(error.response)
+        toast.error( "something went wrong, maybe this property does not have owner", {
+          position: "bottom-right",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         dispatch({ type: messageTypes.CREATE_MESSAGE_FAILURE, error: error });
       })
     }
