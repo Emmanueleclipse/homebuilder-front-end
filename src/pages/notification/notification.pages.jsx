@@ -9,7 +9,6 @@ const {  token } = useSelector((state) => state.authReducer);
 useEffect(()=>{
   axios.get("/notification/notifications/",{ headers: { Authorization: `Bearer ${token}` }}).then(e => console.log(e))
 },[])
-
   return (
     <div className="dashboard-page">
          <div className="dashboard-page-heading">
