@@ -41,7 +41,7 @@ export const createMessage =
         dispatch({ type: messageTypes.CREATE_MESSAGE_SUCCESS, success: response.ok });
       }).catch(error => {
         console.log(error.response)
-        toast.error( "something went wrong", {
+        toast.error( `${error.response.data}`, {
           position: "bottom-right",
           autoClose: 2000,
           hideProgressBar: true,

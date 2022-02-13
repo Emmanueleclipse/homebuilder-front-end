@@ -27,6 +27,7 @@ import ResetPassword from "./pages/ResetPassword/reset-password.component";
 import milestonePage from "./pages/Milestones/milestone.page";
 import Details from "./pages/ActivityDetails/Details";
 import NewMessage from "./pages/Messages/NewMessages/newMessage";
+import MessageRoom from "./pages/Messages/MessageRoom/messageRoom";
 
 
 class App extends Component {
@@ -71,6 +72,7 @@ class App extends Component {
                         <Route exact path="/messages" component={Messages} />
 
                         <Route exact path="/new_message/:id" component={NewMessage} />
+                        <Route exact path="/message_room/:id" component={MessageRoom} />
 
                         <Route path="/activity" component={Activity} />
                         

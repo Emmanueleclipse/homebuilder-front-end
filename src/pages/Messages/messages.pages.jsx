@@ -3,7 +3,7 @@ import Button from "../../components/button/button.component";
 import Person2 from "../../assets/images/person2.jpg";
 import { fetchActivities } from "../../redux/actions/activityAction";
 import { connect } from "react-redux";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useParams, useHistory } from "react-router-dom";
 import "./messages.styles.scss";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -25,55 +25,23 @@ const Messages = (props) => {
   const [shouldScroll, setShouldScroll] = React.useState(false);
   const { token, error, loading } = useSelector((state) => state.authReducer);
   const { messages } = useSelector((state) => state.messageReducer);
+  const history = useHistory();
 
   const { user } = useSelector((state) => state.authReducer);
   const { id } = useParams();
 
-  const sendMsg = (event) => {
-    event.preventDefault();
-    let newMsg = {};
-
-    if (msgRef) {
-      msgRef.current.addEventListener("DOMNodeInserted", (event) => {
-        const { currentTarget: target } = event;
-        target.scroll({ top: target.scrollHeight, behavior: "smooth" });
-      });
-    }
-    if (user.role === "HOMEBUILDER") {
-      newMsg = {
-        id: shortid.generate(),
-        send_by: user.email,
-        send_to: property.homeowner,
-        subject: "subject",
-        property: id,
-        message: message,
-      };
-      messages.push(newMsg);
-    } else if (user.role === "HOMEOWNER") {
-      newMsg = {
-        id: shortid.generate(),
-        send_by: user.email,
-        send_to: property.homebuilder,
-        subject: "subject",
-        property: id,
-        message: message,
-      };
-      messages.push(newMsg);
-    }
-
-    dispatch(createMessage({ message: newMsg, token: token }));
-
-    setMessage("");
-
-    event.target.value = "";
-    console.log(msgRef.current.scrollHeight);
-  };
+  
 
   const needScroll = () => {
     if (!shouldScroll) {
       msgRef.current.scrollTop = msgRef.current.scrollHeight;
     }
   };
+
+  const toRoom=()=>{
+    history.push("/message_room/"+id);
+
+  }
 
   useEffect(() => {
     if (props.token) {
@@ -122,7 +90,7 @@ const Messages = (props) => {
             <br />
             {messages.map((msg, i) => {
               return(
-                <tr className="inbox__table_body">
+                <tr className="inbox__table_body" onClick={()=>toRoom()}>
                 <td>
                   <span>{msg.created_at}</span>
                 </td>
