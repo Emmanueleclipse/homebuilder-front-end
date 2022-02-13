@@ -19,9 +19,24 @@ const NewMessage=(props)=>{
     const dispatch = useDispatch();
 
     const sendMsg = (event) => {
+      event.preventDefault();
 
-  
-        event.preventDefault();
+
+      if(message===''||subject===''||sent_to===""){
+
+        toast.error( "Todo los campos son requeridos", {
+          position: "bottom-right",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+
+        return
+
+      }
         let newMsg={}
       
         
