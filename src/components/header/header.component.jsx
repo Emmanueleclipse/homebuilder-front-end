@@ -46,7 +46,7 @@ const Header = () => {
         onClick={()=>setDot(true)}
         to="notification">
         <div className="notification-icon">
-        <Badge color='error'variant="dot" invisible={dot}>
+        <Badge style={{marginTop:"-.6vw"}} color='error'variant="dot" invisible={dot}>
         <span class="material-icons">notifications</span>
         </Badge>
           
