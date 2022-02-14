@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  
+
   align-items: center;
   @media (max-width: 768px) {
     flex-direction: column;
@@ -47,7 +47,7 @@
   }
   .home-head-card {
     background-color: #f1f9ff;
-    
+
     padding: 1rem;
     display: flex;
     margin-bottom: 1rem;
@@ -117,7 +117,7 @@
         }
       }
     }
-    
+
   }
 }
 
@@ -129,24 +129,24 @@
   button{
     background-color: white;
     border: none;
-    
+
     color: #398d63;
     width: 95%;
-    
-    
+
+
   }
   .arrow{
     width: 5%;
-    
+
     color: #398d63;
-    
+
   }
   .btn-section{
     display: flex;
     flex-direction: row;
   }
 
-  
+
 }
 
 .card-toggle{
@@ -155,7 +155,7 @@
   border-bottom: 0;
   box-shadow:none !important;
   overflow-y: hidden;
-  
+
 
 }
 
@@ -168,55 +168,72 @@
   @media (max-width: 396px) {
     flex-direction: column;
   }
-  
-  
+
+
 }
 
 
 #description{
-  
+
   position: relative;
   top: -85px;
-  
+
 }
 
 #btnImages{
-  
+
   position: relative;
   top: -120px;
-  
+
 }
 
 #images{
-  
+
   position: relative;
   top: -152px;
+  overflow-y: auto;
+  text-align: center;
+}
+
+.images{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   
 }
 #btnDoc{
-  
+
   position: relative;
   top: -184px;
-  
+
 }
 
 #doc{
-  
+
   position: relative;
   top: -216px;
-  
+  text-align: center;
+  overflow-y: auto;
+  ul{
+    list-style: none;
+    a{
+      color: rgba(30, 30, 255, 0.849);
+    }
+
+  }
 }
 .dashboard-page-heading{
     display: flex;
-   
+
     position: sticky;
     top: 60px;
     z-index: 1;
     flex-direction: column;
   }
-  
+
   .custom-heading{
-  
+
     border-top: 6px solid #696c68;
     label{
       color: black;

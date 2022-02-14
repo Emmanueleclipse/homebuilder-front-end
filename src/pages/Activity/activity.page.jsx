@@ -6,7 +6,7 @@ import FormInput from "../../components/form-input/form-input.component";
 import { createActivity } from "../../redux/actions/activityAction";
 import { fetchProperties } from "../../redux/actions/propertyAction";
 import "./activity.styles.scss";
-
+import moment from "moment";
 
 const Activity = ({history }) => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const Activity = ({history }) => {
   const [description, setDescription] = useState("");
   const [_from, set_from] = useState("");
   const [_to, set_to] = useState("");
-  const [file, set_file] = useState("");
+  const [file, set_file] = useState([]);
   const [status, set_status] = useState("ongoing");
   const [submitted, setSubmitted] = useState(false);
   const [popup, setpopup] = useState(false);
@@ -38,7 +38,10 @@ const Activity = ({history }) => {
   useEffect(() => {
  
     dispatch(fetchProperties({ token: token }));
-  }, [dispatch, token]);
+    for(let i=0;i<=file.length-1;i++){
+      console.log(file[i])
+    }
+  }, [dispatch, token, file]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,7 +51,7 @@ const Activity = ({history }) => {
     }
 
     const activity = new FormData();
-  
+    console.log(  new Date(_from+'T00:00:00')  )
     activity.append("property", property);
     activity.append("description", description);
     activity.append("milestone_name", milestone_name);
@@ -56,9 +59,12 @@ const Activity = ({history }) => {
     activity.append("submitted", submitted);
     activity.append("_from", _from);
     activity.append("_to", _to);
+    
     activity.append("attachments", file);
-    console.log(file)
-    dispatch(createActivity({ activity, token: token }));
+    for(let i=0;i<=file.length-1;i++){
+      activity.append("attachments", file[i]);
+    }
+    //dispatch(createActivity({ activity, token: token }));
   };
   
   return (
@@ -160,12 +166,12 @@ const Activity = ({history }) => {
               </label>
               <div className="file-upload-btn">
                 <label htmlFor="file-upload">Select file</label>
-                {file.name}
+                {'Files:'+' ' +file.length}
                 <input
                   type="file"
                   id="file-upload"
-
-                  onChange={(e) => set_file(e.target.files[0])}
+                  multiple
+                  onChange={(e) => set_file(e.target.files)}
                 />
               </div>
             </div>

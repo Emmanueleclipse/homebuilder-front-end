@@ -41,7 +41,7 @@ export const createMessage =
         dispatch({ type: messageTypes.CREATE_MESSAGE_SUCCESS, success: response.ok });
       }).catch(error => {
         console.log(error.response)
-        let mensaje = error.response.data.detail===undefined?'User not found':error.response.data.detail
+        let mensaje = error.response.data.detail===undefined?'This user has not accepted the invite yet':error.response.data.detail
         toast.error( mensaje, {
           position: "bottom-right",
           autoClose: 2000,
