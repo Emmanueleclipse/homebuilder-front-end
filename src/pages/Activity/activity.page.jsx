@@ -64,7 +64,7 @@ const Activity = ({history }) => {
     for(let i=0;i<=file.length-1;i++){
       activity.append("attachments", file[i]);
     }
-    //dispatch(createActivity({ activity, token: token }));
+    dispatch(createActivity({ activity, token: token }));
   };
   
   return (
