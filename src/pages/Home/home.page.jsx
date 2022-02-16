@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../../components/button/button.component";
 import FormInput from "../../components/form-input/form-input.component";
 
@@ -7,13 +7,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchActivities } from "../../redux/actions/activityAction";
 import { connect } from "react-redux";
 import axios from "../../axios";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import moment from "moment";
+import noDataImg from '../../assets/images/nodata.png';
 
 const Home = (props) => {
   const [feeds, setFeeds] = React.useState([]);
   const [filter, setFilter] = React.useState("today");
+  const [userType, setUserType] = useState(null);
   let activities_arrr = [];
+  let history = useHistory();
   /*function convertDate(date) {
     return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
   }*/
@@ -23,6 +26,11 @@ const Home = (props) => {
 
     return new Date(date_string);
   }
+
+  useEffect(() => {
+    let user = JSON.parse(localStorage.getItem('user'))
+    setUserType(user)
+  }, [])
 
   useEffect(() => {
     const property_id = props.match.params.property_id;
@@ -145,7 +153,7 @@ const Home = (props) => {
       </div>
 
       <div className="home-container custom-container">
-        {feeds.length > 0 &&
+        {feeds.length > 0 ? (
           feeds.map((item, index) => (
             <div key={index} className="feed-main-card-div my-3 px-3 pt-3 pb-4">
               <p className="text-center mb-3">
@@ -207,7 +215,19 @@ const Home = (props) => {
                 </Link>
               </div>
             </div>
-          ))}
+          ))
+        ) : (
+          <div className="nodata-main">
+            <img src={noDataImg} style={{ objectFit: 'contain', width: '55%', height: 'auto', marginTop: '-10%' }} alt='no activity'/>
+            <div style={{ marginTop: '-8%'}}>
+              <p className="text-center mb-3">No Activity</p>
+              {
+                userType?.role === "HOMEBUILDER" ? <Button type='main' disabled={false} onClick={() => history.push('/property/add/')}>
+                Get Started
+              </Button> : null}
+            </div>
+          </div>
+        )}
       </div>
       {/* <div className="home-container">
         <div className="home-search">

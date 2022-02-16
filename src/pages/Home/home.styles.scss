@@ -118,6 +118,12 @@
     }
   }
 }
+.nodata-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .select-input {
   padding: 0.7rem 1rem;
   min-width: 170px;
@@ -176,6 +182,9 @@
     height: fit-content;
     padding: .5rem 1rem;
     font-weight: 500;
+  }
+  .nodata-main {
+    display: flex;
   }
 
   .btns-div{
